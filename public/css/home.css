@@ -33,6 +33,7 @@ header p {
     max-width: 700px;
     position: relative;
     line-height: 30px;
+    text-align: center;
 }
 
 header p:last-of-type{
@@ -42,7 +43,7 @@ header p:last-of-type{
 /* Le giltch  */
 
 
-.btn{
+.btn-home{
     position: relative;
     letter-spacing: 4px;
     padding: 15px 25px;
@@ -58,7 +59,7 @@ header p:last-of-type{
 
 .glitch::before,
 .glitch::after {
-  padding: 15px 0px;
+  padding: 15px 25px;
   animation-delay: 5s;
   content: attr(data-text);
   position: absolute;
@@ -69,13 +70,13 @@ header p:last-of-type{
   background: transparent;
 }
 .glitch::before {
-  left:2px;
+  left:1px;
   text-shadow: -2px 0 #49FC00;
   clip: rect(24px, 550px, 90px, 0);
   animation: glitch-anim-2 4s infinite linear alternate-reverse;
 }
 .glitch::after {
-  left: -2px;
+  left: -1px;
   text-shadow: -2px 0 #b300fc;
   clip: rect(85px, 550px, 140px, 0);
   animation: glitch-anim 3.5s infinite linear alternate-reverse;

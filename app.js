@@ -1,12 +1,23 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import mongoose from 'mongoose';
 import ejsMate from 'ejs-mate';
 import methodOverride from 'method-override';
 import session from 'express-session';
 import flash from "connect-flash";
 
-// import campgroundRoutes from './routes/campgrounds.js';
+const dbUrl = 'mongodb://localhost:27017/french-fests';
+mongoose.set('strictQuery', false);
+mongoose.connect(dbUrl);
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log("Database connected");
+});
+
+
+import festsRoutes from './routes/fests.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -29,7 +40,7 @@ app.use(flash());
 
 
 
-// app.use('/campgrounds', campgroundRoutes);
+app.use('/fests', festsRoutes);
 // app.use('/campgrounds/:id/reviews', reviewRoutes);
 // app.use('/', userRoutes)
 

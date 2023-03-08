@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate')%>
+
+<div id="fest-show-container">
+    <div class="poster-container">
+        <img src="<%= fest.image %>" alt="Poster of the festival">
+    </div>
+    <div class="info-container">
+        <div class="links">
+            <a class="btn btn-more" href="https://<%= fest.website %>" target="_blank">En savoir plus</a>
+        </div>
+        <h1><%= fest.title %></h1>
+        <p><%= fest.description %></p>
+        <div class="tags">
+            <% for(const category of fest.category) { %>
+                <span class="tag"><%= category %></span>
+            <% } %>
+        </div>
+        <div class="accordion">
+            <p class="more">Voir plus...</p>
+            <div class="content">
+                <p>Les festival a été créé en <strong><%= fest.creation_year %></strong>.</p>
+                <p>Vous pouvez contacter l'equipe du festival par mail à cette adresse : <strong><%= fest.mail %></strong></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="/js/accordion.js"></script>

@@ -1,13 +1,64 @@
-header{
-//     padding: 0 1rem;
-    text-align: center;
-//     @include flex;
-//     // p{
-//     //     color: white;
-//     //     font-size: 19px;
-//     //     line-height: 30px;
-//     //     &:first-of-type{
-//     //         margin-top: 4rem;
-//     //     }
-//     // }
+#page-header{
+    position: relative;
+    min-height: 300px;
+    background-color: black;
+    @include flex;
+    h1{
+        color: white;
+        transform: translate(0, -30px);
+        font-family: 'rubik';
+        font-size: 50px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $thirdcolor;
+        text-shadow: 
+        0 0 2px $thirdcolor,
+        0 0 10px $glow;
+    }
+    img{
+        position: absolute;
+    }
+    .guitare{
+        width: 145px;
+        top: -35px;
+
+    }
+    .guitare1{
+        left: -30px;
+    }
+    .guitare2{
+        right: -30px;
+    }
+    .radio{
+        width: 220px;
+        bottom: 40px;
+    }
+    .radio1{
+        left: 80px;
+    }
+    .radio2{
+        right: 80px;
+    }
+    .note1{
+        width: 50px;
+    }
+    .note11{
+        top: 20px;
+        left: 270px;
+    }
+    .note12{
+        top: 60px;
+        right: 270px;
+    }
+    .note2{
+        width: 60px;
+    }
+    .note21{
+        top: 40px;
+        left: 160px;
+    }
+    .note22{
+        top: -20px;
+        right: 150px;
+    }
 }

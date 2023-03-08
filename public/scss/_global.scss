@@ -16,7 +16,7 @@ body{
     overflow-x: hidden;
     position: relative;
     // height: 200vh;
-    // background-color: $gray3;
+    background-color: #F6F7F1;
 }
 p{
     line-height: 25px;
@@ -56,4 +56,14 @@ html{
 
 .display-none{
     display: none;
+}
+.btn{
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 40px;
+    display: inline-block;
+    font-weight: 500;
+}
+strong{
+    font-weight: 500;
 }

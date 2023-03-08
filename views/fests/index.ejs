@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate')%>
+<%- include('../partials/header') %>
+<h1>Decouvrez tous les festivals !</h1>
+
+<section id="favorites">
+    <h2>Coup de <i class="fa-regular fa-heart"></i></h2>
+    <div>
+    <% for (const fest of fests){ %>
+        <article>
+            <a href="/fests/<%= fest.id %>">
+                <div class="img-container">
+                    <img src="<%= fest.image %>" alt="">
+                </div>
+            </a>
+            <h3><%= fest.title %></h3>
+            <p><%= fest.municipality %> (<%= fest.zip_code.toString().slice(0,2) %>)</p>
+        </article>
+    <% } %>
+    </div>
+</section>
+
+
+

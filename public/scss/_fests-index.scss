@@ -1,0 +1,17 @@
+#favorites{
+    >div{
+        @include flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        article{
+            @include flex($dir:column);
+        }
+    }
+    .img-container{
+        max-width: 300px;
+        img{
+            width: 100%;
+            border-radius: 7px;
+        }
+    }
+}
