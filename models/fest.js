@@ -10,9 +10,7 @@ const Schema = mongoose.Schema;
 //     filename: String
 // });
 
-// ImageSchema.virtual('thumbnail').get(function () {
-//     return this.url.replace('/upload', '/upload/w_200')
-// })
+
 
 // Par defaut, la conversion des données Mongoose en JSON n'inclut pas les virtuals => Option par defaut à changer
 const opts = { toJSON: { virtuals: true } }
@@ -41,20 +39,27 @@ const FestSchema = new Schema({
     creation_year: Number,
     website: String,
     mail: String,
-    period: String
+    period: String,
+    favorite: Boolean,
     // author: {
     //     type: Schema.Types.ObjectId,
     //     ref: 'User'
     // },
-    // reviews: [
-    //     {
-    //         type: Schema.Types.ObjectId,
-    //         ref: 'Review'
-    //     }
-    // ],
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ],
 
 }, opts);
 
+FestSchema.virtual('thumbnail').get(function () {
+    return this.image.replace('/upload', '/upload/w_600')
+})
+FestSchema.virtual('carousel').get(function () {
+    return this.image.replace('/upload', '/upload/c_crop,ar_1')
+})
 // CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
 //     return `<strong><a href='/campgrounds/${this._id}'>${this.title}</a></strong>
 //     <p>${this.description.substring(0, 20)}...</p>`

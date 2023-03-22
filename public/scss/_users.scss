@@ -1,6 +1,6 @@
-#modal-register {
+#modal-register, #modal-login, #modal-comments {
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     padding-top: 160px;
     left: 0;
     top: 0;
@@ -8,21 +8,6 @@
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-    .modal-content {
-      text-align: center;
-      background-color: white;
-      border: 1px solid $gray2;
-      border-radius: 15px;
-      box-shadow: 5px 5px 18px 1px rgba(0,0,0,0.52);
-      position: relative;
-      margin: auto;
-      padding: 2rem 4rem;
-      width: 500px;
-      -webkit-animation-name: animatetop;
-      -webkit-animation-duration: 0.4s;
-      animation-name: animatetop;
-      animation-duration: 0.4s;
-    }
     .close{
       position: absolute;
       top: 1rem;
@@ -32,48 +17,86 @@
         cursor: pointer;
         transform: scale(1.05);
       }
-    }
-    h3{
-      font-weight: 500;
-      font-size: 30px;
-    }
-    h6{
-      color:$gray2;
-      margin: 1rem 0 2rem;
-      line-height: 18px;
-    }
-    .modal-body{
-      @include flex(start,center,  $dir:column);
-      gap: 10px;
-      >div{
-        @include flex(start,start,  $dir:column);
-        gap: 5px;
-        font-size: 14px;
+      i{
+        color: black;
       }
-      label{
-        margin-left: 10px;
-      }
-      input{
-        border-radius: 15px;
-        border: 2px solid #B9B9B9;
-        padding: 15px 15px;
-        font-size: 16px;
-      } 
     }
-    .btn-submit-register{
-      background-color: $secondcolor;
-      border: none;
-      color: white;
-      margin-top: 1.5rem;
-      font-weight: 700;
-      
+}
+  
+
+#modal-register, #modal-login, .form-login-container, #modal-comments{
+  .modal-content {
+    text-align: center;
+    background-color: white;
+    border: 1px solid $gray2;
+    border-radius: 15px;
+    box-shadow: 5px 5px 18px 1px rgba(0,0,0,0.52);
+    position: relative;
+    margin: auto;
+    padding: 2rem 4rem;
+    width: 500px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    overflow-y: auto; /* permet l'affichage de la barre de défilement verticale en cas de dépassement de la hauteur maximale */
+    max-height: 550px;
+  }
+
+  h3{
+    font-weight: 500;
+    font-size: 30px;
+    margin-bottom: 1rem;
+  }
+  h6{
+    color:$gray2;
+    margin: 0 0 2rem;
+    line-height: 18px;
+  }
+  form{
+    @include flex(start,center,  $dir:column);
+    gap: 10px;
+    >div{
+      @include flex(start,start,  $dir:column);
+      gap: 5px;
+      font-size: 14px;
+    }
+    label{
+      margin-left: 10px;
+    }
+    input{
+      border-radius: 15px;
+      border: 2px solid #B9B9B9;
+      padding: 15px 15px;
+      font-size: 16px;
+    } 
+  }
+  .btn-submit-user{
+    background-color: $secondcolor;
+    border: none;
+    color: white;
+    margin-top: 1.5rem;
+    font-weight: 700;
+    &:hover{
+      cursor: pointer;
     }
   }
-  
+}
+.form-login-container{
+  background-color: white;
+  @include flex($dir:column);
+  width: max-content;
+  margin: 6rem auto 0;
+  padding: 3rem 2rem;
+  border-radius: 15px;
+  box-shadow: 5px 5px 18px 1px rgba(0,0,0,0.52);
+
+}
+
   
   
   /* Add Animation */
-  @-webkit-keyframes animatetop {
+@-webkit-keyframes animatetop {
     from {
       top: -500px;
       opacity: 0.01;
@@ -82,9 +105,9 @@
       top: 0;
       opacity: 1;
     }
-  }
+}
   
-  @keyframes animatetop {
+@keyframes animatetop {
     from {
       top: -500px;
       opacity: 0.01;
@@ -93,4 +116,47 @@
       top: 0;
       opacity: 1;
     }
+}
+
+
+.form-control.success input {
+  border-color: $success-color !important;
+}
+
+.form-control.error input {
+    border-color: $error-color !important;
+}
+
+.form-control small {
+    color: $error-color;
+    visibility: hidden;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.form-control.error small {
+    visibility: visible;
+}
+
+.btn-login, .btn-register, .btn-logout{
+  color: white;
+  border-color: white;
+  background-color: black;
+  transition: all 0.5s;
+  i{
+    transition: all 0.5s;
+    color: white;
   }
+  &:hover{
+    cursor: pointer;
+    color: black;
+    background-color: $gray3;
+    i{
+      color: black;
+    }
+    }
+}
+.btn-logout{
+  border: 2px solid white;
+  font-weight: 400;
+}

@@ -1,0 +1,13 @@
+<% if(success && success.length) { %> 
+    <div class="flash flash-success" >
+        <p><%= success %></p>
+        <div class="close"><i class="fa fa-xmark"></i></div>
+    </div>
+    <% } %> 
+    
+    <% if(error && error.length) { %> 
+        <div class="flash flash-error">
+            <p><%= error %></p>
+            <div class="close"><i class="fa fa-xmark"></i></div>
+        </div>
+        <% } %> 

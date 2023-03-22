@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Fest from '../models/fest.js';
+import Review from '../models/review.js';
 import fests from './festivals_select.js';
 mongoose.connect("mongodb://localhost:27017/french-fests");
 
@@ -15,6 +16,7 @@ db.once('open', () => {
 
 const seedDB = async () => {
     await Fest.deleteMany({});
+    await Review.deleteMany({});
     for (const fest of fests) {
 
         const festFields = fest.fields;
@@ -35,7 +37,8 @@ const seedDB = async () => {
             mail: festFields.adresse_e_mail,
             period: festFields.periode_principale_de_deroulement_du_festival,
             geometry: fest.geometry,
-            category
+            category,
+            favorite: ['Solidays', 'Lollapalooza', 'Electrobeach Music Festival', 'Au fil du son', 'Garorock', 'Delta festival'].includes(festFields.nom_du_festival) ? true : false
 
             // geometry: { type: 'Point', coordinates: [cities[random1000].longitude, cities[random1000].latitude] },
             // images: [

@@ -1,0 +1,55 @@
+.flash{
+    z-index: 100;
+    padding: 1rem 2rem;
+    border-radius: 7px;
+    box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.72);
+    width: max-content;
+    position: absolute;
+    animation-name: showflash;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    left: 50%;
+    transform: translate(-50%);
+    @include flex;
+    gap: 4rem;
+    &:before{
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        top: 0;
+        right: 4.4rem;
+        background-color: white;
+        display: inline-block;
+    }
+    p{
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+}
+.flash-error{
+    background-color: $flash-error;
+
+}
+.flash-success{
+    background: $flash-success;
+}
+.close{
+    i{
+        color: white;
+    }
+    &:hover{
+        cursor: pointer;
+      }
+}
+
+@keyframes showflash {
+    from {
+      top: -100px;
+    }
+    to {
+      top: 120px;
+    }
+}

@@ -3,8 +3,12 @@
     <a href="/"><img src="/img/french_fests_dark.png" alt="" /></a>
   </div>
   <div class="nav-user">
-    <button class="btn btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se connecter</button>
-    <button class="btn btn-register"><i class="fa fa-user"></i> S'inscrire</button>
+    <%if(!currentUser){%>
+      <button class="btn btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se connecter</button>
+      <button class="btn btn-register"><i class="fa fa-user"></i> S'inscrire</button>
+    <% } else { %>
+      <a class="btn btn-logout" href="/logout"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se deconnecter</a>
+    <% } %>
   </div>
   <div class="burger">
     <i class="fa fa-bars fa-2x"></i>
@@ -27,23 +31,52 @@
     <h6>C'est simple et gratuit. Cela vous permet de partager votre avis avec des miliers de fétard dans la monde.</h6>
     <span class="close"><i class="fa-solid fa-xmark"></i></span>
     <div class="modal-body">
-      <div>
-          <label for="username">Nom d'utilisateur</label>
-          <input type="text" name="username" id="username" placeholder="Nom d'utilisateur">
+      <form action="/register" method="post" onsubmit="return validateRegisterForm(event)">
+      <div class="form-control">
+          <label for="rUsername">Nom d'utilisateur</label>
+          <input type="text" name="username" id="rUsername" placeholder="Nom d'utilisateur">
+          <small></small>
       </div>
-      <div>
-        <label for="mail">E-mail</label>
-        <input type="text" name="mail" id="mail" placeholder="E-mail">
+      <div class="form-control">
+        <label for="email">E-mail</label>
+        <input type="text" name="email" id="email" placeholder="E-mail">
+        <small></small>
       </div>
-      <div>
-        <label for="password">Mot de passe</label>
-        <input type="password" name="password" id="password" placeholder="Mot de passe">
+      <div class="form-control">
+        <label for="rPassword">Mot de passe</label>
+        <input type="password" name="password" id="rPassword" placeholder="Mot de passe">
+        <small></small>
       </div>
-      <div>
+      <div class="form-control">
         <label for="password-confirm">Confirmer le mot de passe</label>
         <input type="password" name="password-confirm" id="password-confirm" placeholder="Confirmer le mot de passe">
+        <small></small>
       </div>
-        <button class="btn btn-submit-register">S'inscrire</button>
+      <button type="submit" class="btn btn-submit-user">S'inscrire</button>
       </div>
+    </form>
   </div>
 </div>
+
+<div id="modal-login" class="display-none">
+  <div class="modal-content"> 
+    <h3>Connectez-vous</h3>
+    <span class="close"><i class="fa-solid fa-xmark"></i></span>
+    <div class="modal-body">
+      <form action="/login" method="post" onsubmit="return validateLoginFormModal(event)">
+      <div class="form-control">
+          <label for="lUsername">Nom d'utilisateur</label>
+          <input type="text" name="username" id="lUsername" placeholder="Nom d'utilisateur">
+          <small></small>
+      </div>
+      <div class="form-control">
+        <label for="lPassword">Mot de passe</label>
+        <input type="password" name="password" id="lPassword" placeholder="Mot de passe">
+        <small></small>
+      </div>
+      <button type="submit" class="btn btn-submit-user">Se connecter</button>
+      </div>
+    </form>
+  </div>
+</div>
+

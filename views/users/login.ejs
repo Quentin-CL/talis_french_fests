@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="form-login-container">
+    <h3>Connectez-vous</h3>
+    <div class="modal-body">
+        <form action="/login" method="post" onsubmit="return validateLoginForm(event)">
+        <div class="form-control">
+            <label for="lUsername">Nom d'utilisateur</label>
+            <input type="text" name="username" id="lUsername" placeholder="Nom d'utilisateur">
+            <small></small>
+        </div>
+        <div class="form-control">
+            <label for="lPassword">Mot de passe</label>
+            <input type="password" name="password" id="lPassword" placeholder="Mot de passe">
+            <small></small>
+        </div>
+        <button type="submit" class="btn btn-submit-user">Se connecter</button>
+        </div>
+    </form>
+</div>
