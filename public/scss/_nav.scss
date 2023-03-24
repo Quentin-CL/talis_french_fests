@@ -63,7 +63,7 @@
     }
 }
 
-.navbar{
+.nav-bar{
     z-index: 100;
     position: absolute;
     top: 0;
@@ -155,6 +155,8 @@
 
 #navbar-container{
     background-color: black;
+    position: relative;
+    z-index: 100;
     img{
         width: 100%;
     }

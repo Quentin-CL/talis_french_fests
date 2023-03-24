@@ -60,6 +60,9 @@ FestSchema.virtual('thumbnail').get(function () {
 FestSchema.virtual('carousel').get(function () {
     return this.image.replace('/upload', '/upload/c_crop,ar_1')
 })
+FestSchema.virtual('small').get(function () {
+    return this.image.replace('/upload', '/upload/w_200')
+})
 // CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
 //     return `<strong><a href='/campgrounds/${this._id}'>${this.title}</a></strong>
 //     <p>${this.description.substring(0, 20)}...</p>`

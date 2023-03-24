@@ -4,17 +4,17 @@
   </div>
   <div class="nav-user">
     <%if(!currentUser){%>
-      <button class="btn btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se connecter</button>
-      <button class="btn btn-register"><i class="fa fa-user"></i> S'inscrire</button>
+      <button class="button btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se connecter</button>
+      <button class="button btn-register"><i class="fa fa-user"></i> S'inscrire</button>
     <% } else { %>
-      <a class="btn btn-logout" href="/logout"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se deconnecter</a>
+      <a class="button btn-logout" href="/logout"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se deconnecter</a>
     <% } %>
   </div>
   <div class="burger">
     <i class="fa fa-bars fa-2x"></i>
     <i class="fa fa-times fa-2x"></i>
   </div>
-  <nav class="navbar">
+  <nav class="nav-bar">
     <ul class="nav-links">
       <li class="nav-link"><a aria-current="page" href="/">Home</a></li>
       <li class="nav-link"><a href="/fests">Festivals</a></li>
@@ -52,7 +52,7 @@
         <input type="password" name="password-confirm" id="password-confirm" placeholder="Confirmer le mot de passe">
         <small></small>
       </div>
-      <button type="submit" class="btn btn-submit-user">S'inscrire</button>
+      <button type="submit" class="button btn-submit-user">S'inscrire</button>
       </div>
     </form>
   </div>
@@ -74,7 +74,7 @@
         <input type="password" name="password" id="lPassword" placeholder="Mot de passe">
         <small></small>
       </div>
-      <button type="submit" class="btn btn-submit-user">Se connecter</button>
+      <button type="submit" class="button btn-submit-user">Se connecter</button>
       </div>
     </form>
   </div>
