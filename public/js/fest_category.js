@@ -6,7 +6,8 @@ for (const btnClose of btnCloses) {
 
 function updateCategoryArray(isDeleting, element) {
     const inputHidden = document.querySelector('input[name="fest[category]"]')
-    const categories = inputHidden.value.split(',');
+    const categories = inputHidden.value === '' ? [] : inputHidden.value.split(',');
+    console.log(categories)
     if (isDeleting) {
         categories.splice(categories.indexOf(element.value), 1)
     } else {
@@ -39,7 +40,7 @@ function addCategory(category) {
 
 document.querySelector('.edit-categories>div>button').addEventListener('click', (e) => {
     e.preventDefault();
-    const catInput = document.querySelector('.edit-categories>div>input');
+    const catInput = document.querySelector('.edit-categories>div input');
     addCategory(catInput.value);
     updateCategoryArray(false, catInput);
     catInput.value = '';

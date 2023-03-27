@@ -1,0 +1,98 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center h1 my-4">Ajouter un festival</h1>
+    <div class="col-md-6 offset-md-3 col-10 offset-1">
+      <form action="/fests" method="POST"  enctype="multipart/form-data" class="needs-validation" novalidate>
+        <div class="mb-4 form-floating">
+          <input class="form-control" type="text" id="title" name="fest[title]" placeholder="Nom du festival" required />
+          <label class="form-label" for="title">Nom du festival *</label>
+          <div class="invalid-feedback">
+            Veuillez entrer un nom de festival
+          </div>
+        </div>
+        <div class="mb-4 edit-categories">
+          <div class="input-group mb-3 mt-2">
+            <div class="form-floating">
+              <input type="text" class="form-control" placeholder="Ajouter une categorie" aria-label="Ajouter une categorie" id="add-category">              
+              <label for="add-category">Ajouter une catégorie</label>
+            </div>
+            <button class="btn btn-outline-secondary" type="button">Ajouter</button>
+          </div>
+          <input type="hidden" name="fest[category]">
+          </div>
+        <div class="mb-4 form-floating">
+          <input type="number" class="form-control" id="attendance" placeholder="Nombre d'entrée" name="fest[attendance]" required />
+            <label class="form-label" for="attendance" >Nombre d'entrée *</label>
+            <div class="invalid-feedback">
+              Veuillez entrer une estimation du nombre d'entrée
+            </div>
+        </div>
+        <div class="mb-4">
+            <div class="input-group">
+                <span class="input-group-text">Adresse</span>
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="mailing-adress" name="fest[mailing_adress]" placeholder="Rue, avenue, route...">
+                  <label for="mailing-adress">Rue, avenue, route...</label>
+                </div>
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="zip-code" name="fest[zip_code]" placeholder="Code postal"  required>
+                  <label for="zip-code">Code postal *</label>
+                </div>
+                <div class="form-floating">
+                  <input type="text" class="form-control" name="fest[municipality]" id="municipality"  placeholder="Ville" required>
+                  <label for="municipality">Ville *</label>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4 form-floating">
+            <input type="number" class="form-control" id="creationYear"  name="fest[creation_year]" placeholder="Année de création" required />
+            <label class="form-label" for="creationYear">Année de création *</label>
+            <div class="invalid-feedback">
+              Veuillez entrer une année de création valide
+            </div>
+        </div>
+        <div class="mb-4 form-floating">
+            <input class="form-control" type="text" id="website" name="fest[website]" placeholder="Adresse web" required />
+            <label class="form-label" for="website">Adresse web *</label>
+            <div class="invalid-feedback">
+              Veuillez entrer une adresse web valide
+            </div>
+          </div>
+          <div class="mb-4 form-floating">
+            <input class="form-control" type="mail" id="mail" name="fest[mail]" placeholder="Adresse mail"/>
+            <label class="form-label" for="mail">Adresse email</label>
+          </div>
+          <div class="mb-4 form-floating">
+            <select class="form-select" aria-label="Selecteur de periode de déroulement" name="fest[period]" id="period" required>
+              <option disabled selected value="">Selectionnner un periode de déroulement</option>
+              <option value="Avant-saison (1er janvier - 20 juin)">Avant-saison (1er janvier - 20 juin)</option>
+              <option value="Saison (21 juin - 5 septembre)">Saison (21 juin - 5 septembre)</option>
+              <option value="Après-saison (6 septembre - 31 décembre)">Après-saison (6 septembre - 31 décembre)</option>
+            </select>
+            <label class="form-label" for="period">Periode de déroulement *</label>
+            <div class="invalid-feedback">
+              Selectionner une periode de deroulement
+            </div>
+          </div>
+        <div class="mb-4 form-floating">
+          <textarea class="form-control" type="text" id="description" name="fest[description]" style="height: 120px" placeholder="Decription"></textarea>
+          <label class="form-label" for="description">Description</label>
+        </div>
+        <div class="mb-4 form-check form-switch">
+            <input name='fest[favorite]' class="form-check-input" type="checkbox" role="switch" id="favorite">
+            <label class="form-check-label" for="favorite">Favorite</label>
+        </div>
+        <div class="mb-4">
+          <label for="image" class="form-label">Ajouter une image *</label>
+          <input class="form-control" type="file" id="image" name="image" required />
+        </div>
+        <div class="mb-4">
+          <button class="btn btn-info">Ajouter</button>
+        </div>
+      </form>
+      <a href="/admin/fests">Retour au dashboard</a>
+    </div>
+  </div>
+  <script src="/libs/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/fest_category.js"></script>

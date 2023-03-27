@@ -24,7 +24,7 @@ export const showFest = async (req, res) => {
     res.render("fests/show", { fest });
 }
 
-export const editFest = async (req, res) => {
+export const renderEditFest = async (req, res) => {
     const { id } = req.params;
     const fest = await Fest.findById(id);
     if (!fest) {
@@ -50,5 +50,30 @@ export const updateFest = async (req, res) => {
         await cloudinary.uploader.destroy(filename);
     }
     req.flash("success", 'Festivals modifié avec succés!');
-    res.redirect(`/admin/dashboard`);
+    res.redirect(`/admin/fests`);
+}
+
+export const deleteFest = async (req, res) => {
+    const { id } = req.params;
+    const fest = await Fest.findByIdAndDelete(id);
+    const url = fest.image.split(/[\/\.]/);
+    const filename = url[url.length - 3] + '/' + url[url.length - 2];
+    await cloudinary.uploader.destroy(filename);
+    req.flash('success', 'Festival supprimé avec succés');
+    res.redirect('/admin/fests');
+}
+
+export const renderNewFest = (req, res) => {
+    res.render("fests/new", { boostrap: true })
+}
+
+export const newFest = async (req, res) => {
+    req.body.fest.favorite = req.body.fest.favorite ? true : false;
+    req.body.fest.category = req.body.fest.category.split(',');
+    const img = req.files.map(f => (f.path));
+    req.body.fest.image = img[0];
+    const fest = new Fest(req.body.fest);
+    await fest.save();
+    req.flash('success', 'Festival ajouté avec succés');
+    res.redirect('/admin/fests');
 }

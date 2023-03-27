@@ -1,0 +1,123 @@
+<% layout('layouts/boilerplate')%>
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('../partials/sidebar', {variant: 'users'}) %>
+            <div role="main" class="col-md-9 ms-md-auto col-lg-10 px-4">
+                <h1 class="h1 text-center my-4">Users</h1>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-light">
+                                <th scope="col">Nom d'utilisateur</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Nombre de commentaires</th>
+                                <th></th>
+                                <th></th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7" class="text-center"><a href="/admin/users/new" class="btn btn-dark bnt-sm">Nouveau</a></td>
+                            </tr>
+                            <% for (const user of users){ %>
+                            <tr>
+                                <th scope="row"><%=user.username%></th>
+                                <td><%=user.email%></td>
+                                <td><%=user.count%></td>
+                                <td ><a href="/fests/<%#=fest.id%>" target="_blank" class="btn btn-info btn-sm">Voir les commentaires</a></td>                                <td>
+                                    <form action="/fests/<%#=fest.id%>?_method=DELETE" method="post">
+                                        <button class="btn btn-danger btn-sm">Bannir</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Invoice</h3>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Invoice #184382</h5>
+                                <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
+                                    mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+                                <a href="#" class="btn btn-info">Print</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Invoice #184386</h5>
+                                <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
+                                    mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+                                <a href="#" class="btn btn-info">Print</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Invoice #184389</h5>
+                                <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
+                                    mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+                                <a href="#" class="btn btn-info">Print</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Invoice #184391</h5>
+                                <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
+                                    mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+                                <a href="#" class="btn btn-info">Print</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <style>
+  th{
+    font-weight: 500;
+  }
+  td, th{
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    padding: 110px 0 0 10px;
+    border-right: 1px solid #d3d3d3;
+  }
+  
+  .left-sidebar {
+    position: sticky;
+    top:0;
+    height: calc(100vh - 70px)
+  }
+  
+  /* .sidebar-nav li .nav-link {
+    color: #333;
+    font-weight: 500;
+  } */
+  main .card {
+    margin-bottom: 20px;
+  }
+.navbar-brand{
+  margin:10px;
+}
+    </style>
+<script src="/libs/js/bootstrap.bundle.min.js"></script>

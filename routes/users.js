@@ -1,13 +1,13 @@
 import express from 'express';
 const router = express.Router({ mergeParams: true });
-// import catchAsync from "../utils/catchAsync.js";
+import catchAsync from "../utils/catchAsync.js";
 
 import * as users from '../controllers/users.js';
 import { checkReturnTo } from '../middleware.js'
 
 
 router.route('/register')
-    .post(users.register);
+    .post(catchAsync(users.register));
 
 
 router.route('/login')

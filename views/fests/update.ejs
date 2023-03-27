@@ -3,52 +3,81 @@
 <div class="row">
     <h1 class="text-center h1 my-4">Modifier un festival</h1>
     <div class="col-md-6 offset-md-3 col-10 offset-1">
-      <form action="/fests/<%=fest._id%>?_method=PUT" method="POST"  enctype="multipart/form-data">
-        <div class="mb-4">
+      <form action="/fests/<%=fest._id%>?_method=PUT" class="needs-validation" novalidate method="POST"  enctype="multipart/form-data">
+        <div class="mb-4 form-floating">
+          <input class="form-control" type="text" id="title" name="fest[title]" value="<%=fest.title %>"  placeholder="Nom de festival" required />
           <label class="form-label" for="title">Nom du festival</label>
-          <input class="form-control" type="text" id="title" name="fest[title]" value="<%=fest.title %>" required />
+          <div class="invalid-feedback">
+            Veuillez entrer un nom de festival
+          </div>
         </div>
         <div class="mb-4 edit-categories">
           <% for (cat of fest.category){ %>
             <span class="badge rounded-pill text-bg-primary p-2 m-1 fw-normal"><%= cat %> <button class="btn-close" value="<%= cat %>"></button></span>
           <% } %>
           <div class="input-group mb-3 mt-2">
-            <input type="text" class="form-control" placeholder="Ajouter une categorie" aria-label="Ajouter une categorie">
+            <div class="form-floating">
+              <input type="text" class="form-control" placeholder="Ajouter une categorie" aria-label="Ajouter une categorie" id="add-category">
+              <label class="form-label" for="add-category">Ajouter une categorie</label>
+            </div>
             <button class="btn btn-outline-secondary" type="button">Ajouter</button>
           </div>
           <input type="hidden" value="<%= fest.category %>" name="fest[category]">
           </div>
-        <div class="mb-4">
+        <div class="mb-4 form-floating">
+            <input type="number" class="form-control" id="attendance"  name="fest[attendance]" value="<%=fest.attendance %>" placeholder="Nombre d'entrée" required />
             <label class="form-label" for="attendance">Nombre d'entrée</label>
-            <input type="number" class="form-control" id="attendance"  name="fest[attendance]" value="<%=fest.attendance %>" required />
+            <div class="invalid-feedback">
+              Veuillez entrer une estimation du nombre d'entrée
+            </div>
         </div>
         <div class="mb-4">
             <div class="input-group">
                 <span class="input-group-text">Adresse</span>
-                <input type="text" class="form-control" name="fest[mailing_adress]" value="<%=fest.mailing_adress %>" required>
-                <input type="number" class="form-control" name="fest[zip_code]" value="<%=fest.zip_code %>" required>
-                <input type="text" class="form-control" name="fest[municipality]" value="<%=fest.municipality %>" required>
+                <div class="form-floating">
+                  <input type="text" class="form-control" name="fest[mailing_adress]" value="<%=fest.mailing_adress %>" placeholder="Rue, avenue, route..." required>
+                  <label for="" class="form-label">Rue, avenue, route...</label>
+                </div>
+                <div class="form-floating">
+                  <input type="number" class="form-control" name="fest[zip_code]" value="<%=fest.zip_code %>" placeholder="Code postal" required>
+                  <label for="" class="form-label">Code postal</label>
+                </div>
+                <div class="form-floating">
+                  <input type="text" class="form-control" name="fest[municipality]" value="<%=fest.municipality %>" placeholder="Ville" required>
+                  <label for="" class="form-label">Ville</label>
+                </div>
+
             </div>
         </div>
-        <div class="mb-4">
+        <div class="mb-4 form-floating">
+            <input type="number" class="form-control" id="creationYear"  name="fest[creation_year]" value="<%=fest.creation_year %>" placeholder="Année de création" required />
             <label class="form-label" for="creationYear">Année de création</label>
-            <input type="number" class="form-control" id="creationYear"  name="fest[creation_year]" value="<%=fest.creation_year %>" required />
+            <div class="invalid-feedback">
+              Veuillez entrer une année de création valide
+            </div>
         </div>
-        <div class="mb-4">
+        <div class="mb-4 form-floating">
+          <input class="form-control" type="text" id="website" name="fest[website]" value="<%=fest.website %>" placeholder="Adresse web" required />
             <label class="form-label" for="website">Adresse web</label>
-            <input class="form-control" type="text" id="website" name="fest[website]" value="<%=fest.website %>" required />
+            <div class="invalid-feedback">
+              Veuillez entrer une adresse web valide
+            </div>
           </div>
-          <div class="mb-4">
+          <div class="mb-4 form-floating">
+            <input class="form-control" type="mail" id="mail" name="fest[mail]" value="<%=fest.mail %>" placeholder="Adresse email" required />
             <label class="form-label" for="mail">Adresse email</label>
-            <input class="form-control" type="mail" id="mail" name="fest[mail]" value="<%=fest.mail %>" required />
           </div>
-          <div class="mb-4">
+          <div class="mb-4 form-floating">
+            <select class="form-select" aria-label="Selecteur de periode de déroulement" name="fest[period]" id="period" required>
+              <option <%= fest.period === 'Avant-saison (1er janvier - 20 juin)' ? 'selected' : '' %> value="Avant-saison (1er janvier - 20 juin)">Avant-saison (1er janvier - 20 juin)</option>
+              <option <%= fest.period === "Saison (21 juin - 5 septembre)" ? 'selected' : '' %> value="Saison (21 juin - 5 septembre)">Saison (21 juin - 5 septembre)</option>
+              <option <%= fest.period === "Après-saison (6 septembre - 31 décembre)" ? 'selected' : '' %> value="Après-saison (6 septembre - 31 décembre)">Après-saison (6 septembre - 31 décembre)</option>
+            </select>
             <label class="form-label" for="period">Periode de déroulement</label>
-            <input class="form-control" type="text" id="period" name="fest[period]" value="<%=fest.period %>" required />
           </div>
-        <div class="mb-4">
+        <div class="mb-4 form-floating">
+          <textarea class="form-control" type="text" id="description" name="fest[description]" style="height: 120px" placeholder="Description"><%= fest.description%></textarea>
           <label class="form-label" for="description">Description</label>
-          <textarea class="form-control" type="text" id="description" name="fest[description]" style="height: 120px" required><%= fest.description%></textarea>
         </div>
         <div class="mb-4 form-check form-switch">
             <input name='fest[favorite]' class="form-check-input" type="checkbox" role="switch" id="favorite" <%= fest.favorite ? 'checked' : '' %>>
@@ -66,7 +95,7 @@
           <button class="btn btn-info">Modifier</button>
         </div>
       </form>
-      <a href="/admin/dashboard">Retour au dashboard</a>
+      <a href="/admin/fests">Retour au dashboard</a>
     </div>
   </div>
   <script src="/libs/js/bootstrap.bundle.min.js"></script>
