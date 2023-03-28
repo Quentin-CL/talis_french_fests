@@ -3,7 +3,7 @@ const router = express.Router({ mergeParams: true });
 import catchAsync from "../utils/catchAsync.js";
 
 import * as users from '../controllers/users.js';
-import { checkReturnTo } from '../middleware.js'
+import { isAdmin, checkReturnTo } from '../middleware.js'
 
 
 router.route('/register')
@@ -16,6 +16,8 @@ router.route('/login')
 
 router.get('/logout', users.logout)
 
+router.route('/users/:id')
+    .delete(isAdmin, users.deleteUsers)
 
 
-export default router;
+export default router; 

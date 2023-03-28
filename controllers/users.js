@@ -49,3 +49,10 @@ export const logout = (req, res, next) => {
         res.redirect('/fests')
     });
 }
+
+export const deleteUsers = async (req, res) => {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
+    req.flash('success', 'Utilisateur supprimé avec succés');
+    res.redirect('/admin/users');
+}
