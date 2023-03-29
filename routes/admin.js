@@ -16,5 +16,5 @@ router.route('/users')
 router.route('/reviews')
     .get(isAdmin, catchAsync(admin.renderDashboardReviews));
 
-
+router.patch('/reviews/:id', isAdmin, catchAsync(admin.moderateReview))
 export default router;

@@ -4,6 +4,7 @@ import Fest from '../models/fest.js'
 export const createReview = async (req, res) => {
     const fest = await Fest.findById(req.params.id);
     const review = new Review(req.body.review);
+    review.isModerated = false;
     review.author = req.user._id;
     review.createDate = Date.now();
     fest.reviews.push(review);

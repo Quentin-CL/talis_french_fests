@@ -5,6 +5,10 @@ const reviewSchema = new Schema({
     body: String,
     rating: Number,
     createDate: Date,
+    isModerated: {
+        type: Boolean,
+        default: false
+    },
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

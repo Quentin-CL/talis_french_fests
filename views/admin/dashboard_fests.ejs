@@ -1,96 +1,34 @@
 <% layout('layouts/boilerplate')%>
-    <div class="container-fluid">
-        <div class="row">
-            <%- include('../partials/sidebar', {variant: 'fests'}) %>
-            <div role="main" class="col-md-9 ms-md-auto col-lg-10 px-4">
-                <h1 class="h1 text-center my-4">Festivals</h1>
-                <hr>
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="table-light">
-                                <th scope="col">Nom</th>
-                                <th scope="col">Adresse</th>
-                                <th scope="col">Nombre d'entrée</th>
-                                <th scope="col">Année de creation</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td colspan="7" class="text-center"><a href="/fests/new" class="btn btn-dark bnt-sm">Nouveau</a></td>
-                            </tr>
-                            <% for (const fest of fests){ %>
-                            <tr>
-                                <th scope="row"><%=fest.title%></th>
-                                <td><%=fest.mailing_adress%> <%=fest.zip_code%> <%=fest.municipality%></td>
-                                <td><%=fest.attendance%></td>
-                                <td><%=fest.creation_year%></td>
-                                <td><a href="/fests/<%=fest.id%>" target="_blank" class="btn btn-info btn-sm">Voir</a></td>
-                                <td><a href="/fests/<%=fest.id%>/edit" class="btn btn-warning btn-sm">Modifier</a></td>
-                                <td>
-                                    <form action="/fests/<%=fest.id%>?_method=DELETE" method="post">
-                                        <button class="btn btn-danger btn-sm">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>Invoice</h3>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Invoice #184382</h5>
-                                <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
-                                    mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
-                                <a href="#" class="btn btn-info">Print</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Invoice #184386</h5>
-                                <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
-                                    mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
-                                <a href="#" class="btn btn-info">Print</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Invoice #184389</h5>
-                                <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
-                                    mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
-                                <a href="#" class="btn btn-info">Print</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Invoice #184391</h5>
-                                <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
-                                    mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
-                                <a href="#" class="btn btn-info">Print</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+<div class="container-fluid">
+    <div class="row">
+        <%- include('../partials/sidebar', {variant: 'fests'}) %>
+        <div role="main" class="col-md-9 ms-md-auto col-lg-10 px-4">
+            <h1 class="h1 text-center my-4">Festivals</h1>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-light">
+                            <th scope="col" class="sortable" data-sortkey="title">Nom <div class="d-flex flex-column"><i class="fa-solid fa-sort-up"></i><i class="fa-solid fa-sort-down"></i></div></i></th>
+                            <th scope="col">Adresse</th>
+                            <th scope="col" class="sortable" data-sortkey="creation_year">Année de création <i class="fas fa-sort"></i></th>
+                            <th scope="col" class="sortable" data-sortkey="attendance">Nombre d'entrée <i class="fas fa-sort"></i></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="7" class="text-center"><a href="/fests/new" class="btn btn-dark bnt-sm">Nouveau</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <style>
+</div>
+
+
+<style>
   th{
     font-weight: 500;
   }
@@ -113,15 +51,76 @@
     height: calc(100vh - 70px)
   }
   
-  /* .sidebar-nav li .nav-link {
-    color: #333;
-    font-weight: 500;
-  } */
   main .card {
     margin-bottom: 20px;
   }
 .navbar-brand{
   margin:10px;
 }
-    </style>
+</style>
+<script>
+    const headers = document.querySelectorAll('.sortable');
+
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const sortKey = header.getAttribute('data-sortkey');
+            const sortOrder = header.classList.contains('asc') ? -1 : 1;
+
+            // trier les données
+            if (sortKey === 'title'){
+                fests.sort((a, b) => sortOrder*a.title.localeCompare(b.title, 'fr', { sensitivity: 'base' }));
+            } else {
+                fests.sort((a, b) => {
+                const aValue = a[sortKey];
+                const bValue = b[sortKey];
+
+                if (aValue < bValue) {
+                    return -sortOrder;
+                } else if (aValue > bValue) {
+                    return sortOrder;
+                } else {
+                    return 0;
+                }
+            });
+            }
+
+
+            // inverser l'ordre de tri
+            headers.forEach(header => header.classList.remove('asc'));
+            if(sortOrder!=-1){
+                header.classList.toggle('asc');
+            }
+            // mise à jour de la table
+            renderTable();
+        });
+    });
+
+    function renderTable() {
+        const tableBody = document.querySelector('tbody');
+        tableBody.innerHTML = '';
+
+        fests.forEach(fest => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <th scope="row">${fest.title}</th>
+                <td>${fest.mailing_adress} ${fest.zip_code} ${fest.municipality}</td>
+                <td>${fest.creation_year}</td>
+                <td>${fest.attendance}</td>
+                <td><a href="/fests/${fest.id}" target="_blank" class="btn btn-info btn-sm">Voir</a></td>
+                <td><a href="/fests/${fest.id}/edit" class="btn btn-warning btn-sm">Modifier</a></td>
+                <td>
+                    <form action="/fests/${fest.id}?_method=DELETE" method="post">
+                        <button class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                </td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+    }
+
+    let fests = <%- JSON.stringify(fests) %>;
+    renderTable();
+</script>
 <script src="/libs/js/bootstrap.bundle.min.js"></script>
+

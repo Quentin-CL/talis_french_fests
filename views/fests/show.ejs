@@ -52,7 +52,7 @@
                             <p class="starability-result" data-rating="<%= fest.reviews[i].rating %>">Noté <%= fest.reviews[i].rating %></p>
                             <span><%= fest.reviews[i].createDate ? fest.reviews[i].createDateFormatted : '' %></span>
                         </div>
-                        <p><%= fest.reviews[i].body %></p>
+                        <p class="<%= fest.reviews[i].isModerated ? "moderated-message" : "" %>"><%= fest.reviews[i].isModerated ? "Ce message a été modéré par un administrateur" : fest.reviews[i].body %></p>
                     </div>
                 <% i++;
                 } %>
@@ -78,7 +78,7 @@
             <p class="starability-result" data-rating="<%= review.rating %>">Noté <%= review.rating %></p>
             <span><%= review.createDate ? review.createDateFormatted : '' %></span>
           </div>
-          <p><%= review.body %></p>
+          <p class="<%= review.isModerated ? "moderated-message" : "" %>"><%= review.isModerated ? "Ce message a été modéré par un administrateur" : review.body %></p>
         </div>
       <% } %>
     </div>

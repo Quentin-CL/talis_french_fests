@@ -11,6 +11,7 @@
                                 <th scope="col">Nom d'utilisateur</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Nombre de commentaires</th>
+                                <th scope="col">Nombre de commentaires modérés</th>
                                 <th></th>
                                 <th></th>
                         </thead>
@@ -20,6 +21,7 @@
                                 <th scope="row"><%=user.username%></th>
                                 <td><%=user.email%></td>
                                 <td><%=user.count%></td>
+                                <td><%=user.moderatedCount%></td>
                                 <td ><a href="/fests/<%#=fest.id%>" target="_blank" class="btn btn-info btn-sm">Voir les commentaires</a></td>                                <td>
                                 <td>  
                                     <form action="/users/<%=user._id%>?_method=DELETE" method="post">
