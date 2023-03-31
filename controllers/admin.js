@@ -33,27 +33,44 @@ export const renderDashboardUsers = async (req, res) => {
 }
 
 export const renderDashboardReviews = async (req, res) => {
-    const reviews = await Review.aggregate([
-        { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'user' } },
-        { $lookup: { from: 'fests', localField: '_id', foreignField: 'reviews', as: 'fest' } },
-        { $unwind: '$user' },
-        { $unwind: '$fest' },
-        { $sort: { 'fest.title': 1, createDate: -1 } },
-        { $project: { _id: 1, body: 1, rating: 1, createDate: 1, isModerated: 1, 'user.username': 1, 'user._id': 1, 'fest.title': 1, 'fest._id': 1 } }]);
-    // lookup permet de joindre les tables, unwind deplit la table que l'on a join et project permet de choisir les données à afficher
-    const countByFest = getTodayAndLastWeekReviewsCount(reviews)
-    const sortedReviews = Object.keys(countByFest).sort((a, b) => {
-        const countDiff = countByFest[b]['today'] - countByFest[a]['today']
-        if (countDiff !== 0) {
-            return countDiff
-        } else {
-            return countByFest[b]['week'] - countByFest[a]['week']
+    const { author } = req.query;
+    let sortedReviews = [];
+    if (author) {
+        sortedReviews = await Review.find({ author: author }).populate({
+            path: "author",
+            options: { sort: { createDate: -1 } },
+            populate: {
+                path: '_id'
+            }
+        });
+        if (sortedReviews.length === 0) {
+            req.flash("error", "Aucun commentaire n'est associé à cet utilisateur");
+            return res.redirect('/admin/users');
         }
-    }).map(festId => {
-        return reviews.filter(review => review.fest._id.equals(festId)).concat(countByFest[festId]);
-    });
-    // res.send(sortedFests);
-    res.render('admin/dashboard_reviews', { sortedReviews, boostrap: true, getFullDate });
+        sortedReviews = [sortedReviews];
+        // res.send(sortedReviews)
+    } else {
+        const reviews = await Review.aggregate([
+            { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'user' } },
+            { $lookup: { from: 'fests', localField: '_id', foreignField: 'reviews', as: 'fest' } },
+            { $unwind: '$user' },
+            { $unwind: '$fest' },
+            { $sort: { 'fest.title': 1, createDate: -1 } },
+            { $project: { _id: 1, body: 1, rating: 1, createDate: 1, isModerated: 1, 'user.username': 1, 'user._id': 1, 'fest.title': 1, 'fest._id': 1 } }]);
+        // lookup permet de joindre les tables, unwind deplit la table que l'on a join et project permet de choisir les données à afficher
+        const countByFest = getTodayAndLastWeekReviewsCount(reviews)
+        sortedReviews = Object.keys(countByFest).sort((a, b) => {
+            const countDiff = countByFest[b]['today'] - countByFest[a]['today']
+            if (countDiff !== 0) {
+                return countDiff
+            } else {
+                return countByFest[b]['week'] - countByFest[a]['week']
+            }
+        }).map(festId => {
+            return reviews.filter(review => review.fest._id.equals(festId)).concat(countByFest[festId]);
+        });
+    }
+    res.render('admin/dashboard_reviews', { sortedReviews, boostrap: true, getFullDate, query: author });
 }
 
 export const moderateReview = async (req, res) => {

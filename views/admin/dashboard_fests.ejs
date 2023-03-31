@@ -8,13 +8,13 @@
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="table-light">
-                            <th scope="col" class="sortable" data-sortkey="title">Nom <div class="d-flex flex-column"><i class="fa-solid fa-sort-up"></i><i class="fa-solid fa-sort-down"></i></div></i></th>
+                            <th scope="col" class="sortable d-flex gap-1" data-sortkey="title"><p>Nom</p><div class="position-relative p-1"><i class="fa-solid fa-sort-up position-absolute" ></i><i class="fa-solid fa-sort-down position-absolute"></i></div></th>
                             <th scope="col">Adresse</th>
-                            <th scope="col" class="sortable" data-sortkey="creation_year">Année de création <i class="fas fa-sort"></i></th>
-                            <th scope="col" class="sortable" data-sortkey="attendance">Nombre d'entrée <i class="fas fa-sort"></i></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th scope="col" class="sortable" data-sortkey="creation_year"><div class="d-flex gap-1"><p>Année</p><div class="position-relative p-1"><i class="fa-solid fa-sort-up position-absolute" ></i><i class="fa-solid fa-sort-down position-absolute"></i></div></div></th>
+                            <th scope="col" class="sortable d-flex gap-1" data-sortkey="attendance"><p>Nbr d'entrée</p><div class="position-relative p-1"><i class="fa-solid fa-sort-up position-absolute" ></i><i class="fa-solid fa-sort-down position-absolute"></i></div></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                     </thead>
                     <tbody>
                         <tr>
@@ -28,43 +28,17 @@
 </div>
 
 
-<style>
-  th{
-    font-weight: 500;
-  }
-  td, th{
-    vertical-align: middle;
-  }
-
-  .sidebar {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    top: 0;
-    padding: 110px 0 0 10px;
-    border-right: 1px solid #d3d3d3;
-  }
-  
-  .left-sidebar {
-    position: sticky;
-    top:0;
-    height: calc(100vh - 70px)
-  }
-  
-  main .card {
-    margin-bottom: 20px;
-  }
-.navbar-brand{
-  margin:10px;
-}
-</style>
 <script>
     const headers = document.querySelectorAll('.sortable');
-
+    const arrowUps = document.querySelectorAll('.fa-sort-up');
+    const arrowDowns = document.querySelectorAll('.fa-sort-down');
     headers.forEach(header => {
         header.addEventListener('click', () => {
+
             const sortKey = header.getAttribute('data-sortkey');
             const sortOrder = header.classList.contains('asc') ? -1 : 1;
+            const arrowUp = document.querySelector(`th[data-sortkey="${sortKey}"] .fa-sort-up`);
+            const arrowDown = document.querySelector(`th[data-sortkey="${sortKey}"] .fa-sort-down`);
 
             // trier les données
             if (sortKey === 'title'){
@@ -87,8 +61,13 @@
 
             // inverser l'ordre de tri
             headers.forEach(header => header.classList.remove('asc'));
+            arrowUps.forEach(arrowUp => arrowUp.classList.remove('text-body-tertiary'));
+            arrowDowns.forEach(arrowDown => arrowDown.classList.remove('text-body-tertiary'));
             if(sortOrder!=-1){
                 header.classList.toggle('asc');
+                arrowUp.classList.toggle('text-body-tertiary')
+            } else {
+                arrowDown.classList.toggle('text-body-tertiary')
             }
             // mise à jour de la table
             renderTable();
@@ -122,5 +101,5 @@
     let fests = <%- JSON.stringify(fests) %>;
     renderTable();
 </script>
-<script src="/libs/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="/libs/js/bootstrap.bundle.min.js"></script> -->
 

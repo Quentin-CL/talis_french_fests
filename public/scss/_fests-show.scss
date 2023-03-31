@@ -88,9 +88,12 @@
       }
       .new-comment{
         margin: 0 0 10px;
+        >div{
+          @include flex(start);
+          gap: 1rem;
+        }
       }
       .starability-grow{
-        transform: scale(1);
         margin: 0 auto;
         min-height: 35px;
       }
@@ -114,16 +117,15 @@
         }
       }
       .btn-comment{
-        display: block;
-        margin-left: auto;
         background:none;
-        padding: 10px 25px;
-        margin-top: 10px;
-        transition: all 0.5s;
+        border: none;
+        transition: all 0.3s;
         &:hover{
             cursor: pointer;
-            background-color: $firstcolor;
-            color: white;
+            transform: scale(1.1);
+        }
+        i{
+          font-size: 25px;
         }
       }
 }
@@ -155,6 +157,76 @@
     font-size: 12px;
     margin-left: -1.5rem;
   }
+  
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .comment-options {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-toggle {
+    cursor: pointer;
+  }
+  
+  .comment-body {
+    margin-bottom: 10px;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 1.5em;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    display: none;
+    border: 1px #c2c2c2 solid;
+    border-radius: 7px;
+  }
+  
+  .dropdown-item {
+    color: #333;
+    font-size: 1em;
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #eee;
+  }
+  .comment-text{
+    @include flex(start);
+    gap: 10px;
+  }
+  .validate-btn{
+    background: none;
+    border: none;
+    transition: all 0.3s;
+    &:hover{
+      i{
+        transform: scale(1.1);
+      }
+      cursor: pointer
+    }
+  }
+    
 }
 .rating{
   @include flex(start);

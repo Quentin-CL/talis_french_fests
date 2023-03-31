@@ -38,30 +38,47 @@
                     <label for="first-rate4" title="Very good">4 stars</label>
                     <input type="radio" id="first-rate5" name="review[rating]" value="5" />
                     <label for="first-rate5" title="Amazing">5 stars</label>
-                  </fieldset>
-                <textarea name="review[body]" placeholder="Ajoutez un commentaire"></textarea>
-                <button class="button btn-comment display-none">Envoyer</button>
+                </fieldset>
+                <div>
+                    <textarea name="review[body]" placeholder="Ajoutez un commentaire"></textarea>
+                    <button class="btn-comment display-none"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </form>
             <% } %>
             <div class="comments-container">
                 <% let i = 0 ;
                 while (fest.reviews[i] && i<2) { %>
-                    <div>
-                        <h5><%= fest.reviews[i].author.username %></h5>
-                        <div class="rating">
-                            <p class="starability-result" data-rating="<%= fest.reviews[i].rating %>">Noté <%= fest.reviews[i].rating %></p>
-                            <span><%= fest.reviews[i].createDate ? fest.reviews[i].createDateFormatted : '' %></span>
+                    <div class="comment">
+                        <div class="comment-header">
+                            <h5><%= fest.reviews[i].author.username %></h5>
+                            <div class="comment-options">
+                                <div class="dropdown">
+                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item edit-btn" href="#">Editer</a>
+                                        <a class="dropdown-item delete-btn" href="#">Supprimer</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="<%= fest.reviews[i].isModerated ? "moderated-message" : "" %>"><%= fest.reviews[i].isModerated ? "Ce message a été modéré par un administrateur" : fest.reviews[i].body %></p>
+                        <div class="comment-body">
+                            <div class="rating">
+                                <p class="starability-result" data-rating="<%= fest.reviews[i].rating %>"></p>
+                                <span><%= fest.reviews[i].createDate ? fest.reviews[i].createDateFormatted : '' %></span>
+                            </div>
+                            <div class="comment-text" data-send="/fests/<%= fest.id %>/reviews/<%= fest.reviews[i]._id %>">
+                                <p class="<%= fest.reviews[i].isModerated ? 'moderated-message' : '' %>"><%= fest.reviews[i].isModerated ? 'Ce message a été modéré par un administrateur' : fest.reviews[i].body %></p>
+                            </div>    
+                        </div>
                     </div>
                 <% i++;
                 } %>
-            </div>
+            </div>            
             <% if(fest.reviews.length > 2){ %>
                 <button class="btn-show-more">...</button>
             <% } %>
-        </div>
-
     </div>
 </section>
 
@@ -75,7 +92,7 @@
         <div>
           <h5><%= review.author.username %></h5>
           <div class="rating">
-            <p class="starability-result" data-rating="<%= review.rating %>">Noté <%= review.rating %></p>
+            <p class="starability-result" data-rating="<%= review.rating %>"></p>
             <span><%= review.createDate ? review.createDateFormatted : '' %></span>
           </div>
           <p class="<%= review.isModerated ? "moderated-message" : "" %>"><%= review.isModerated ? "Ce message a été modéré par un administrateur" : review.body %></p>
@@ -87,3 +104,4 @@
 
 
 <script src="/js/accordion.js"></script>
+<script src="/js/comments.js"></script>

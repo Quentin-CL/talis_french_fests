@@ -4,12 +4,15 @@ const router = express.Router({ mergeParams: true });
 import catchAsync from "../utils/catchAsync.js";
 // import { validateReview, isLoggedIn, isReviewAuthor } from '../middleware.js';
 import * as reviews from "../controllers/reviews.js";
-import { isLoggedIn, isAdmin } from '../middleware.js';
+import { isLoggedIn, isAdmin, isReviewAuthor, isReviewLoggedIn } from '../middleware.js';
 
 
 
 router.post('/', isLoggedIn, catchAsync(reviews.createReview))
 
+router
+    .put('/:reviewId', isReviewLoggedIn, isReviewAuthor, reviews.updateReview)
+    .delete('/:reviewId', isReviewLoggedIn, isReviewAuthor, reviews.deleteReview)
 
 // router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(reviews.deleteReview))
 

@@ -92,6 +92,25 @@ strong {
   font-weight: 500;
 }
 
+th {
+  font-weight: 500;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  padding: 110px 0 0 10px;
+  border-right: 1px solid #d3d3d3;
+}
+
+.left-sidebar {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 70px);
+}
+
 .nav-bar .nav-links li:nth-of-type(6), .nav-bar .nav-links li:nth-of-type(5), .nav-bar .nav-links li:nth-of-type(4), .nav-bar .nav-links li:nth-of-type(3), .nav-bar .nav-links li:nth-of-type(2), .nav-bar .nav-links li:nth-of-type(1) {
   opacity: 0;
   transition: 0.3s ease-in all;
@@ -658,8 +677,14 @@ footer span {
 #fest-show-container .new-comment {
   margin: 0 0 10px;
 }
+#fest-show-container .new-comment > div {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
 #fest-show-container .starability-grow {
-  transform: scale(1);
   margin: 0 auto;
   min-height: 35px;
 }
@@ -683,17 +708,16 @@ footer span {
   outline: none;
 }
 #fest-show-container .btn-comment {
-  display: block;
-  margin-left: auto;
   background: none;
-  padding: 10px 25px;
-  margin-top: 10px;
-  transition: all 0.5s;
+  border: none;
+  transition: all 0.3s;
 }
 #fest-show-container .btn-comment:hover {
   cursor: pointer;
-  background-color: #540d6e;
-  color: white;
+  transform: scale(1.1);
+}
+#fest-show-container .btn-comment i {
+  font-size: 25px;
 }
 
 .comments-container {
@@ -724,6 +748,69 @@ footer span {
   color: #a2a2a2;
   font-size: 12px;
   margin-left: -1.5rem;
+}
+.comments-container .comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.comments-container .comment-options {
+  display: flex;
+  align-items: center;
+}
+.comments-container .dropdown-toggle {
+  cursor: pointer;
+}
+.comments-container .comment-body {
+  margin-bottom: 10px;
+}
+.comments-container .dropdown {
+  position: relative;
+  display: inline-block;
+}
+.comments-container .dropdown-toggle {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 1.5em;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.comments-container .dropdown-menu {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  display: none;
+  border: 1px #c2c2c2 solid;
+  border-radius: 7px;
+}
+.comments-container .dropdown-item {
+  color: #333;
+  font-size: 1em;
+  text-decoration: none;
+  display: block;
+  padding: 5px 10px;
+}
+.comments-container .dropdown-item:hover {
+  background-color: #eee;
+}
+.comments-container .comment-text {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+.comments-container .validate-btn {
+  background: none;
+  border: none;
+  transition: all 0.3s;
+}
+.comments-container .validate-btn:hover {
+  cursor: pointer;
+}
+.comments-container .validate-btn:hover i {
+  transform: scale(1.1);
 }
 
 .rating {
