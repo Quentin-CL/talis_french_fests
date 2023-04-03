@@ -22,6 +22,17 @@
             border-radius: 20px;
         }
     }
+    .av-rating{
+      @include flex(start);
+      margin: 5px 0;
+      p:last-child{
+        font-size: 15px;
+        font-weight: 500;
+        margin-left: -1.5rem;
+        color: #333;
+        letter-spacing: 1px;
+      }
+    }
     .info-container{
         max-width: 600px;
     }
@@ -34,7 +45,7 @@
     h1{
         font-size: 30px;
         font-weight: 700;
-        margin: 1rem 0;
+        margin: 1rem 0 0;
     }
     p{
         line-height: 20px;
@@ -66,68 +77,49 @@
         &.open{
                 padding-bottom: 15%;
         }   
+    }
+    .more{
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      user-select: none   ;
+      margin-bottom: 5px;
+    }
+    .content{
+      p{
+          font-size: 14px;
       }
-      .more{
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 700;
-        user-select: none   ;
-        margin-bottom: 5px;
+    }
+    .comments{
+      padding: 10px 0;
+      h2{
+          font-weight: 700;
+          font-size: 18px;
       }
-      .content{
-        p{
-            font-size: 14px;
-        }
+    }
+    .new-comment{
+      margin: 0 0 10px;
+      >div{
+        @include flex(start);
+        gap: 1rem;
       }
-      .comments{
-        padding: 10px 0;
-        h2{
-            font-weight: 700;
-            font-size: 18px;
-        }
+    }
+    .starability-grow{
+      margin: 0 auto;
+      min-height: 35px;
+    }
+    .btn-comment{
+      background:none;
+      border: none;
+      transition: all 0.3s;
+      &:hover{
+          cursor: pointer;
+          transform: scale(1.1);
       }
-      .new-comment{
-        margin: 0 0 10px;
-        >div{
-          @include flex(start);
-          gap: 1rem;
-        }
+      i{
+        font-size: 25px;
       }
-      .starability-grow{
-        margin: 0 auto;
-        min-height: 35px;
-      }
-      textarea{
-        background: none;
-        width: 100%;
-        border-style: none none solid none ;
-        font-family: 'rubik';
-        color: $gray1;
-        border-color: $gray1;
-        resize: none;
-        overflow: hidden;
-        height: 20px;
-        max-height: 100px;
-        font-size: 14px;
-        padding: 5px;
-        &:focus{
-            border-color: black;
-            border-width: 2px;
-            outline: none;
-        }
-      }
-      .btn-comment{
-        background:none;
-        border: none;
-        transition: all 0.3s;
-        &:hover{
-            cursor: pointer;
-            transform: scale(1.1);
-        }
-        i{
-          font-size: 25px;
-        }
-      }
+    }
 }
 .comments-container{
   text-align: start;
@@ -198,6 +190,7 @@
     display: none;
     border: 1px #c2c2c2 solid;
     border-radius: 7px;
+    background-color: white;
   }
   
   .dropdown-item {
@@ -214,6 +207,10 @@
   .comment-text{
     @include flex(start);
     gap: 10px;
+    span{
+      margin-left: 0;
+      font-style: italic;
+    }
   }
   .validate-btn{
     background: none;
@@ -255,4 +252,26 @@
   font-size: 12px;
   color: #727272;
   font-style: italic;
+}
+
+.comments, #modal-comments{
+  textarea{
+    background: none;
+    width: 100%;
+    border-style: none none solid none ;
+    font-family: 'rubik';
+    color: $gray1;
+    border-color: $gray1;
+    resize: none;
+    overflow: hidden;
+    height: 20px;
+    max-height: 100px;
+    font-size: 14px;
+    padding: 5px;
+    &:focus{
+        border-color: black;
+        border-width: 2px;
+        outline: none;
+    }
+  }
 }

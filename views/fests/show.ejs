@@ -9,6 +9,10 @@
             <a class="button btn-more" href="https://<%= fest.website %>" target="_blank">En savoir plus</a>
         </div>
         <h1><%= fest.title %></h1>
+        <div class="av-rating">
+            <p class="starability-result" data-rating="<%= fest.averageRating %>"></p>
+            <p><%= fest.numReviews %> avis</p>
+        </div>
         <p><%= fest.description %></p>
         <div class="tags">
             <% for(const category of fest.category) { %>
@@ -25,8 +29,8 @@
         <div class="comments">
             <h2>Commentaires</h2>
             <% if(currentUser){ %>
-            <form action="/fests/<%= fest.id %>/reviews" method="post" class="new-comment">
-                <fieldset class="starability-grow">
+            <form action="/fests/<%= fest.id %>/reviews" method="post" class="new-comment" onsubmit="return validateReviewForm(event)">
+                <fieldset class="starability-grow form-control" required>
                     <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
                     <input type="radio" id="first-rate1" name="review[rating]" value="1" />
                     <label for="first-rate1" title="Terrible">1 star</label>
@@ -38,10 +42,11 @@
                     <label for="first-rate4" title="Very good">4 stars</label>
                     <input type="radio" id="first-rate5" name="review[rating]" value="5" />
                     <label for="first-rate5" title="Amazing">5 stars</label>
+                    <small></small>
                 </fieldset>
                 <div>
-                    <textarea name="review[body]" placeholder="Ajoutez un commentaire"></textarea>
-                    <button class="btn-comment display-none"><i class="fa-solid fa-arrow-right"></i></button>
+                    <textarea name="review[body]" placeholder="Ajoutez un commentaire" maxlength="1200"></textarea>
+                    <button class="btn-comment"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </form>
             <% } %>
@@ -51,17 +56,19 @@
                     <div class="comment">
                         <div class="comment-header">
                             <h5><%= fest.reviews[i].author.username %></h5>
-                            <div class="comment-options">
-                                <div class="dropdown">
-                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item edit-btn" href="#">Editer</a>
-                                        <a class="dropdown-item delete-btn" href="#">Supprimer</a>
+                            <% if(currentUser && fest.reviews[i].author._id.equals(currentUser._id)){ %>
+                                <div class="comment-options">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item edit-btn" href="#">Editer</a>
+                                            <a class="dropdown-item delete-btn" href="#">Supprimer</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <% } %>
                         </div>
                         <div class="comment-body">
                             <div class="rating">
@@ -70,6 +77,7 @@
                             </div>
                             <div class="comment-text" data-send="/fests/<%= fest.id %>/reviews/<%= fest.reviews[i]._id %>">
                                 <p class="<%= fest.reviews[i].isModerated ? 'moderated-message' : '' %>"><%= fest.reviews[i].isModerated ? 'Ce message a été modéré par un administrateur' : fest.reviews[i].body %></p>
+                                <%- fest.reviews[i].updateDate ? '<span> (modifié)</span>'  : '' %>
                             </div>    
                         </div>
                     </div>
@@ -89,13 +97,34 @@
     <span class="close"><i class="fa-solid fa-xmark"></i></span>
     <div class="comments-container">
       <% for (const review of fest.reviews) { %>
-        <div>
-          <h5><%= review.author.username %></h5>
-          <div class="rating">
-            <p class="starability-result" data-rating="<%= review.rating %>"></p>
-            <span><%= review.createDate ? review.createDateFormatted : '' %></span>
-          </div>
-          <p class="<%= review.isModerated ? "moderated-message" : "" %>"><%= review.isModerated ? "Ce message a été modéré par un administrateur" : review.body %></p>
+        <div class="comment">
+            <div class="comment-header">
+                <h5><%= review.author.username %></h5>
+                <% if(currentUser && review.author._id.equals(currentUser._id)){ %>
+                    <div class="comment-options">
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item edit-btn" href="#">Editer</a>
+                                <a class="dropdown-item delete-btn" href="#">Supprimer</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+            </div>
+            <div class="comment-body">
+                <div class="rating">
+                    <p class="starability-result" data-rating="<%= review.rating %>"></p>
+                    <span><%= review.createDate ? review.createDateFormatted : '' %></span>
+                </div>
+                <div class="comment-text" data-send="/fests/<%= fest.id %>/reviews/<%= review._id %>">
+                    <p class="<%= review.isModerated ? 'moderated-message' : '' %>"><%= review.isModerated ? 'Ce message a été modéré par un administrateur' : review.body %></p>
+                    <%- review.updateDate ? '<span> (modifié)</span>'  : '' %>
+                </div>    
+            </div>
         </div>
       <% } %>
     </div>

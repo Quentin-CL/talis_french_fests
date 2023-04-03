@@ -141,8 +141,8 @@
 .btn-login, .btn-register, .btn-logout{
   color: white;
   border-color: white;
-  background-color: black;
   transition: all 0.5s;
+  background: none;
   i{
     transition: all 0.5s;
     color: white;

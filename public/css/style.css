@@ -64,6 +64,9 @@ body {
   font-family: "rubik";
   overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #F6F7F1;
 }
 
@@ -231,9 +234,7 @@ th {
 }
 
 #navbar-container {
-  background-color: black;
   position: relative;
-  z-index: 100;
 }
 #navbar-container img {
   width: 100%;
@@ -241,7 +242,7 @@ th {
 #navbar-container > div:first-of-type {
   margin: 0 auto;
   max-width: 400px;
-  padding: 1rem 0 0;
+  padding: 10px 0;
 }
 #navbar-container > div:first-of-type a {
   width: 100%;
@@ -250,7 +251,6 @@ th {
 #page-header {
   position: relative;
   min-height: 300px;
-  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -266,61 +266,65 @@ th {
   color: #ffd23f;
   text-shadow: 0 0 2px #ffd23f, 0 0 10px #F9FF91;
 }
-#page-header img {
+
+header {
+  background: url("../img/banner_flower.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 2;
+}
+
+.overlay-dark {
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
-}
-#page-header .guitare {
-  width: 145px;
-  top: -35px;
-}
-#page-header .guitare1 {
-  left: -30px;
-}
-#page-header .guitare2 {
-  right: -30px;
-}
-#page-header .radio {
-  width: 220px;
-  bottom: 40px;
-}
-#page-header .radio1 {
-  left: 80px;
-}
-#page-header .radio2 {
-  right: 80px;
-}
-#page-header .note1 {
-  width: 50px;
-}
-#page-header .note11 {
-  top: 20px;
-  left: 270px;
-}
-#page-header .note12 {
-  top: 60px;
-  right: 270px;
-}
-#page-header .note2 {
-  width: 60px;
-}
-#page-header .note21 {
-  top: 40px;
-  left: 160px;
-}
-#page-header .note22 {
-  top: -20px;
-  right: 150px;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
 
 footer {
-  padding: 2rem 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+  background-color: #F6F7F1;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #E5E5E5;
+  position: relative;
+  bottom: 0;
+  margin-top: auto;
 }
-footer span {
-  color: white;
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-links li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.footer-links li:last-child {
+  margin-right: 0;
+}
+
+.footer-links a {
+  color: #212529;
+  text-decoration: none;
 }
 
 #modal-register, #modal-login, #modal-comments {
@@ -466,8 +470,8 @@ footer span {
 .btn-login, .btn-register, .btn-logout {
   color: white;
   border-color: white;
-  background-color: black;
   transition: all 0.5s;
+  background: none;
 }
 .btn-login i, .btn-register i, .btn-logout i {
   transition: all 0.5s;
@@ -485,6 +489,70 @@ footer span {
 .btn-logout {
   border: 2px solid white;
   font-weight: 400;
+}
+
+#contact-section {
+  padding: 50px;
+}
+#contact-section .contact-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#contact-section label {
+  margin-left: 10px;
+}
+#contact-section input, #contact-section textarea {
+  border-radius: 15px;
+  border: 2px solid #B9B9B9;
+  padding: 15px 15px;
+  font-size: 16px;
+  margin: 5px 0 10px;
+}
+#contact-section button {
+  background-color: #ee4266;
+  width: max-content;
+  border: none;
+  color: white;
+  margin: 1.5rem auto 0;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+}
+#contact-section button:hover {
+  cursor: pointer;
+  background-color: #b91134;
+}
+#contact-section .contact-form-container {
+  flex-basis: 50%;
+  margin-right: 50px;
+}
+#contact-section .contact-form {
+  display: flex;
+  flex-direction: column;
+}
+#contact-section .contact-info-container {
+  flex-basis: 40%;
+}
+#contact-section h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+#contact-section ul.contact-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#contact-section ul.contact-info-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+#contact-section i.fa-solid {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #ee4266;
 }
 
 .flash {
@@ -610,6 +678,20 @@ footer span {
   width: 100%;
   border-radius: 20px;
 }
+#fest-show-container .av-rating {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  margin: 5px 0;
+}
+#fest-show-container .av-rating p:last-child {
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: -1.5rem;
+  color: #333;
+  letter-spacing: 1px;
+}
 #fest-show-container .info-container {
   max-width: 600px;
 }
@@ -625,7 +707,7 @@ footer span {
 #fest-show-container h1 {
   font-size: 30px;
   font-weight: 700;
-  margin: 1rem 0;
+  margin: 1rem 0 0;
 }
 #fest-show-container p {
   line-height: 20px;
@@ -687,25 +769,6 @@ footer span {
 #fest-show-container .starability-grow {
   margin: 0 auto;
   min-height: 35px;
-}
-#fest-show-container textarea {
-  background: none;
-  width: 100%;
-  border-style: none none solid none;
-  font-family: "rubik";
-  color: #6C757D;
-  border-color: #6C757D;
-  resize: none;
-  overflow: hidden;
-  height: 20px;
-  max-height: 100px;
-  font-size: 14px;
-  padding: 5px;
-}
-#fest-show-container textarea:focus {
-  border-color: black;
-  border-width: 2px;
-  outline: none;
 }
 #fest-show-container .btn-comment {
   background: none;
@@ -783,6 +846,7 @@ footer span {
   display: none;
   border: 1px #c2c2c2 solid;
   border-radius: 7px;
+  background-color: white;
 }
 .comments-container .dropdown-item {
   color: #333;
@@ -800,6 +864,10 @@ footer span {
   align-items: center;
   flex-direction: row;
   gap: 10px;
+}
+.comments-container .comment-text span {
+  margin-left: 0;
+  font-style: italic;
 }
 .comments-container .validate-btn {
   background: none;
@@ -843,6 +911,26 @@ footer span {
   font-size: 12px;
   color: #727272;
   font-style: italic;
+}
+
+.comments textarea, #modal-comments textarea {
+  background: none;
+  width: 100%;
+  border-style: none none solid none;
+  font-family: "rubik";
+  color: #6C757D;
+  border-color: #6C757D;
+  resize: none;
+  overflow: hidden;
+  height: 20px;
+  max-height: 100px;
+  font-size: 14px;
+  padding: 5px;
+}
+.comments textarea:focus, #modal-comments textarea:focus {
+  border-color: black;
+  border-width: 2px;
+  outline: none;
 }
 
 @media only screen and (max-width: 1247px) {

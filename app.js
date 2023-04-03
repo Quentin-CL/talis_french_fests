@@ -118,7 +118,9 @@ app.use('/admin', adminRoutes)
 app.get('/', (req, res) => {
     res.render('home')
 })
-
+app.get('/contact', (req, res) => {
+    res.render('contact', { header: "Contact" })
+})
 // app.all('*', (req, res, next) => {
 //     next(new ExpressError('Page Not Found', 404))
 // })

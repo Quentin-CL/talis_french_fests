@@ -8,6 +8,8 @@ $(document).ready(function () {
         e.preventDefault()
         const commentText = $(this).closest(".comment").find("p").text();
         const $input = $("<textarea>").val(commentText);
+        $input.css({ 'resize': 'both', 'height': 'auto', 'overflow': 'visible' })
+        $input.attr('maxlenght', 1200)
         const $btn = $("<button>").html('<i class="fa-solid fa-arrow-right"></i>').addClass("validate-btn");
         $(this).closest(".comment").find("p:not(.starability-result)").replaceWith($input);
         $(this).closest(".comment").find(".comment-text").append($btn);
@@ -72,39 +74,4 @@ $(document).ready(function () {
 
 
     });
-
-
-
-
-    // $('.edit-comment').on('click', function (e) {
-    //     e.preventDefault();
-    //     $(this).closest('.comment').find('.comment-body').hide();
-    //     $(this).closest('.comment').find('.comment-edit-form').removeClass('display-none');
-    //     $(this).closest('.comment').find('.comment-edit-form textarea').val($(this).closest('.comment').find('.comment-body p').text().trim());
-    // });
-
-    // // Save edited comment on click
-    // $('.save-comment-edit').on('click', function (e) {
-    //     e.preventDefault();
-    //     var comment = $(this).closest('.comment');
-    //     var editedComment = comment.find('.comment-edit-form textarea').val().trim();
-
-    //     // Perform AJAX request to save edited comment
-    //     // ...
-
-    //     comment.find('.comment-body p').text(editedComment);
-    //     comment.find('.comment-edit-form').addClass('d-none');
-    //     comment.find('.comment-body').show();
-    // });
-
-    // // Delete comment on click
-    // $('.delete-comment').on('click', function (e) {
-    //     e.preventDefault();
-    //     var comment = $(this).closest('.comment');
-
-    //     // Perform AJAX request to delete
-    //     // ...
-
-    //     comment.remove();
-    // })
 });

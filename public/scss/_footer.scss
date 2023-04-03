@@ -1,8 +1,42 @@
-footer{
-    padding: 2rem 1rem;
-    @include flex;
-    span{
-        color: white;
-    }
-
-}
+footer {
+    background-color: #F6F7F1;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid #E5E5E5;
+    position: relative;
+    bottom: 0;
+    margin-top: auto;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .text-muted {
+    color: #6c757d;
+  }
+  
+  .footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .footer-links li:last-child {
+    margin-right: 0;
+  }
+  
+  .footer-links a {
+    color: #212529;
+    text-decoration: none;
+  }

@@ -71,6 +71,16 @@ const checkRequired = (inputArr) => {
     return isConfirmed
 };
 
+const checkStarResult = (inputZeroStar) => {
+    if (inputZeroStar.checked === true) {
+        showError(inputZeroStar, `Champs requis`);
+        return false;
+    }
+    showSuccess(inputZeroStar);
+    return true
+
+};
+
 const validateRegisterForm = (e) => {
     const isRequired = checkRequired([registerUsername, email, registerPassword, passwordConfirmation])
     const isLenght = checkLength(registerPassword, 8, 30)
@@ -92,6 +102,16 @@ const validateLoginForm = (e) => {
     if (!isRequired) e.preventDefault();
     return (isRequired);
 };
+
+const validateReviewForm = (e) => {
+    const isValid = checkStarResult(document.querySelector('#no-rate'))
+    if (!isValid) e.preventDefault();
+    return (isValid);
+}
+
+
+
+
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {

@@ -16,7 +16,7 @@ export const createReview = async (req, res) => {
 export const updateReview = async (req, res) => {
     const { reviewId } = req.params;
     const newCommentBody = req.body.body;
-    Review.findByIdAndUpdate(reviewId, { body: newCommentBody }, { new: true })
+    Review.findByIdAndUpdate(reviewId, { body: newCommentBody, updateDate: Date.now() }, { new: true })
         .then(updatedComment => {
             if (!updatedComment) {
                 // si le commentaire n'existe pas, retourner une erreur 404

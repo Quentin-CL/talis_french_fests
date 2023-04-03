@@ -15,7 +15,7 @@
     <script src="/libs/js/jquery-3.6.4.min.js"></script>
   </head>
   <body>
-    <%- include('../partials/navbar') %> 
+    <header><div class="overlay-dark"></div><%- include('../partials/navbar') %> <%- typeof header !== 'undefined' ? include('../partials/header.ejs') : "" %></header>
     <main><%- include('../partials/flash') %> <%- body %></main>
     <%- include('../partials/footer') %>
   </body>

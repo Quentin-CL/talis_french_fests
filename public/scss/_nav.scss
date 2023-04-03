@@ -154,16 +154,14 @@
 }
 
 #navbar-container{
-    background-color: black;
     position: relative;
-    z-index: 100;
     img{
         width: 100%;
     }
     >div:first-of-type{
         margin: 0 auto;
         max-width:400px;
-        padding: 1rem 0 0;
+        padding: 10px 0;
         a{width: 100%;}
     }
 }

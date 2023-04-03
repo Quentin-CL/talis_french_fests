@@ -19,5 +19,6 @@ router.get('/logout', users.logout)
 router.route('/users/:id')
     .delete(isAdmin, users.deleteUsers)
 
-
+router.route('/contact')
+    .get()
 export default router; 

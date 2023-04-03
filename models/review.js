@@ -3,8 +3,13 @@ const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
     body: String,
-    rating: Number,
+    rating: {
+        type: Number,
+        min: 1,
+        max: 5
+    },
     createDate: Date,
+    updateDate: Date,
     isModerated: {
         type: Boolean,
         default: false

@@ -39,6 +39,8 @@
                                             <tr class="<%= review.isModerated ? 'table-danger' : ''%>">
                                                 <% if (j < todayReview) { %>
                                                     <td><span class="badge bg-secondary">New</span></td>
+                                                <% } else if (todayReview){ %>
+                                                    <td></td>
                                                 <% } %>
                                                 <td scope="row"><%= getFullDate(review.createDate) %></th>
                                                 <td><%= review.body %></td>

@@ -5,7 +5,7 @@ export const index = async (req, res) => {
     const fests = await Fest.find({});
     const favoriteFests = await Fest.find({ favorite: true })
 
-    res.render('fests/index', { fests, favoriteFests });
+    res.render('fests/index', { fests, favoriteFests, header: "Les festivals" });
 }
 
 export const showFest = async (req, res) => {
@@ -20,6 +20,13 @@ export const showFest = async (req, res) => {
     if (!fest) {
         req.flash("error", "Festival introuvable");
         return res.redirect('/fests');
+    }
+    fest.numReviews = fest.reviews.length;
+    if (fest.numReviews) {
+        const sumRatings = fest.reviews.reduce((acc, current) => acc + current.rating, 0)
+        fest.averageRating = Math.round((sumRatings / fest.numReviews) * 2) / 2;
+    } else {
+        fest.averageRating = 0
     }
     res.render("fests/show", { fest });
 }

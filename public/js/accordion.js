@@ -8,12 +8,10 @@ more.addEventListener('click', () => {
 
 })
 
-const textarea = document.querySelector("#fest-show-container .new-comment textarea");
-const btnComment = document.querySelector(".btn-comment")
+const textarea = document.querySelector("textarea");
 function auto_grow() {
     textarea.style.height = "5px";
     textarea.style.height = (textarea.scrollHeight - 7) + "px";
-    btnComment.classList.remove('display-none');
 
 }
 textarea.addEventListener('input', auto_grow)

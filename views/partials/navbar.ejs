@@ -1,12 +1,15 @@
 <div id="navbar-container">
   <div>
-    <a href="/"><img src="/img/french_fests_dark.png" alt="" /></a>
+    <a href="/"><img src="/img/french_fests_rm.png" alt="" /></a>
   </div>
   <div class="nav-user">
     <%if(!currentUser){%>
       <button class="button btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se connecter</button>
       <button class="button btn-register"><i class="fa fa-user"></i> S'inscrire</button>
     <% } else { %>
+      <%if(currentUser.isAdmin){%>
+        <a class="button btn-logout" href="/admin/fests"><i class="fa-solid fa-toolbox"></i> Dashboard</a>
+      <% } %>
       <a class="button btn-logout" href="/logout"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se deconnecter</a>
     <% } %>
   </div>
@@ -18,7 +21,7 @@
     <ul class="nav-links">
       <li class="nav-link"><a aria-current="page" href="/">Home</a></li>
       <li class="nav-link"><a href="/fests">Festivals</a></li>
-      <li class="nav-link"><a href="/campgrounds">Actus</a></li>
+      <li class="nav-link"><a href="/contact">Contact</a></li>
       <li class="nav-link"><a href="/register">Register</a></li>
       <li class="nav-link"><a href="/logout">Logout</a></li>
     </ul>

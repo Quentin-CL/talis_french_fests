@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate')%>
+<section id="contact-section">
+    <h2>Nous Contacter</h2>
+    <div class="contact-container">
+        <div class="contact-form-container">
+        <form class="contact-form" action="/send-email" method="POST">
+            <label for="name">Nom</label>
+            <input type="text" id="name" name="name" placeholder="Votre nom" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Votre adresse email" required />
+
+            <label for="subject">Sujet</label>
+            <input type="text" id="subject" name="subject" placeholder="Le sujet de votre message" required />
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+
+            <button class="button" type="submit">Envoyer</button>
+        </form>
+        </div>
+        <div class="contact-info-container">
+        <h3>Information de Contact</h3>
+        <ul class="contact-info-list">
+            <li>
+            <i class="fa-solid fa-envelope"></i>
+            <p>contact@frenchfest.com</p>
+            </li>
+            <li>
+            <i class="fa-solid fa-phone"></i>
+            <p>01 23 45 67 89</p>
+            </li>
+            <li>
+            <i class="fa-solid fa-map-marker"></i>
+            <p>12 rue de la Liberté<br />75001 Paris, France</p>
+            </li>
+        </ul>
+        </div>
+    </div>
+</section>
+
