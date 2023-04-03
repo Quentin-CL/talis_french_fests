@@ -250,7 +250,7 @@ th {
 
 #page-header {
   position: relative;
-  min-height: 300px;
+  min-height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -448,11 +448,11 @@ footer {
     opacity: 1;
   }
 }
-.form-control.success input {
+.form-control.success input, .form-control.success textarea {
   border-color: #7aa55b !important;
 }
 
-.form-control.error input {
+.form-control.error input, .form-control.error textarea {
   border-color: #f44336 !important;
 }
 
@@ -509,6 +509,7 @@ footer {
   padding: 15px 15px;
   font-size: 16px;
   margin: 5px 0 10px;
+  width: 100%;
 }
 #contact-section button {
   background-color: #ee4266;
@@ -530,6 +531,13 @@ footer {
 #contact-section .contact-form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+#contact-section .contact-form > div {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
 }
 #contact-section .contact-info-container {
   flex-basis: 40%;
@@ -537,11 +545,6 @@ footer {
 #contact-section h3 {
   font-size: 24px;
   margin-bottom: 15px;
-}
-#contact-section ul.contact-info-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
 }
 #contact-section ul.contact-info-list li {
   display: flex;
@@ -553,6 +556,9 @@ footer {
   font-size: 24px;
   margin-right: 10px;
   color: #ee4266;
+}
+#contact-section textarea, #contact-section input {
+  font-family: "rubik";
 }
 
 .flash {
@@ -612,6 +618,46 @@ footer {
     top: 120px;
   }
 }
+#error-container {
+  border: 2px solid #777;
+  border-radius: 7px;
+  width: 40%;
+  margin: 2rem auto 0;
+  padding: 2rem;
+}
+#error-container p {
+  overflow-wrap: break-word;
+  line-height: 25px;
+  letter-spacing: 1px;
+}
+#error-container .alert-heading {
+  text-align: center;
+}
+#error-container .alert-heading i {
+  color: #f44336;
+  font-size: 50px;
+}
+#error-container a {
+  margin: 1rem 0;
+  display: inline-block;
+  font-weight: 500;
+  border-bottom: 2px solid black;
+  padding-bottom: 1px;
+}
+#error-container h1 {
+  color: #f44336;
+  font-size: 25px;
+  font-weight: 700;
+  margin: 1rem 0;
+}
+#error-container img {
+  width: 100%;
+}
+#error-container div:last-of-type {
+  width: 55%;
+  margin: 0 auto;
+}
+
 #favorites {
   margin: 0 auto;
   max-width: 1400px;

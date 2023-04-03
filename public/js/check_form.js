@@ -7,10 +7,10 @@ const loginPasswordModal = document.querySelector("#modal-login #lPassword");
 const loginPassword = document.querySelector(".form-login-container #lPassword");
 const passwordConfirmation = document.querySelector("#modal-register #password-confirm");
 
+
 const showError = (input, msg) => {
     const formControl = input.parentElement;
     const small = formControl.querySelector("small");
-    // formControl.classList.remove("success");
     formControl.classList.add("error");
     small.textContent = msg;
 };
@@ -82,11 +82,11 @@ const checkStarResult = (inputZeroStar) => {
 };
 
 const validateRegisterForm = (e) => {
-    const isRequired = checkRequired([registerUsername, email, registerPassword, passwordConfirmation])
-    const isLenght = checkLength(registerPassword, 8, 30)
-    const isEmail = checkEmail(email)
+    const isRequired = checkRequired([registerUsername, email, registerPassword, passwordConfirmation]);
+    const isLenght = checkLength(registerPassword, 8, 30);
+    const isEmail = checkEmail(email);
     const isPass = checkPasswordMatch(passwordConfirmation, registerPassword);
-    const isValid = isRequired && isLenght && isEmail && isPass
+    const isValid = isRequired && isLenght && isEmail && isPass;
     if (!isValid) e.preventDefault();
     return (isValid);
 };
@@ -104,13 +104,22 @@ const validateLoginForm = (e) => {
 };
 
 const validateReviewForm = (e) => {
-    const isValid = checkStarResult(document.querySelector('#no-rate'))
+    const isValid = checkStarResult(document.querySelector('#no-rate'));
     if (!isValid) e.preventDefault();
     return (isValid);
 }
 
-
-
+const validateContactForm = (e) => {
+    const contactName = document.querySelector("#contact-name")
+    const contactEmail = document.querySelector("#contact-email")
+    const contactSubject = document.querySelector("#contact-subject")
+    const contactMessage = document.querySelector("#contact-message")
+    const isRequired = checkRequired([contactName, contactEmail, contactSubject, contactMessage]);
+    const isEmail = checkEmail(contactEmail);
+    const isValid = isRequired && isEmail;
+    if (!isValid) e.preventDefault();
+    return (isValid);
+}
 
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields

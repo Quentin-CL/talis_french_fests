@@ -1,0 +1,39 @@
+#error-container{
+    border: 2px solid #777;
+    border-radius: 7px;
+    width: 40%;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    p{
+        overflow-wrap: break-word;
+        line-height: 25px;
+        letter-spacing: 1px;
+    }
+    .alert-heading{
+        text-align: center;
+        i{
+            color: $error-color;
+            font-size: 50px;
+        }
+    }
+    a{
+        margin: 1rem 0;
+        display: inline-block;
+        font-weight: 500;
+        border-bottom: 2px solid black;
+        padding-bottom: 1px;
+    }
+    h1{
+        color: $error-color;
+        font-size: 25px;
+        font-weight: 700;
+        margin: 1rem 0;
+    }
+    img{
+        width: 100%
+    };
+    div:last-of-type{
+        width: 55%;
+        margin: 0 auto;
+    }
+}

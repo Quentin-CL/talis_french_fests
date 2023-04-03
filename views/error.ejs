@@ -1,0 +1,16 @@
+<% layout('layouts/boilerplate') %>
+<section id="error-container">
+    <div class="alert-heading">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <h1>Erreur <%= err.statusCode %> : <%= err.message %></h1>
+    </div>
+    <div>
+        <h2>Oups, quelque chose s'est mal passé !</h2>
+        <p>Veuillez réessayer plus tard.</p>
+        <a href="/"><i class="fa-solid fa-house"></i> Retourner à l'accueil</a>
+    </div>
+    <div>
+        <img src="/img/error.jpg" alt="">
+    </div>
+</section>
+

@@ -119,11 +119,11 @@
 }
 
 
-.form-control.success input {
+.form-control.success input, .form-control.success textarea {
   border-color: $success-color !important;
 }
 
-.form-control.error input {
+.form-control.error input , .form-control.error textarea{
     border-color: $error-color !important;
 }
 

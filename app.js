@@ -11,8 +11,7 @@ import MongoStore from 'connect-mongo';
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import User from './models/user.js';
-import axios from 'axios';
-
+import ExpressError from "./utils/ExpressError.js";
 
 const dbUrl = 'mongodb://localhost:27017/french-fests';
 mongoose.set('strictQuery', false);
@@ -28,6 +27,7 @@ import festsRoutes from './routes/fests.js';
 import reviewRoutes from './routes/reviews.js'
 import userRoutes from './routes/users.js'
 import adminRoutes from './routes/admin.js'
+import generalRoutes from './routes/general.js'
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -113,23 +113,17 @@ app.use('/fests', festsRoutes);
 app.use('/fests/:id/reviews', reviewRoutes);
 app.use('/', userRoutes)
 app.use('/admin', adminRoutes)
+app.use('/', generalRoutes)
 
-
-app.get('/', (req, res) => {
-    res.render('home')
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page non trouvé', 404))
 })
-app.get('/contact', (req, res) => {
-    res.render('contact', { header: "Contact" })
-})
-// app.all('*', (req, res, next) => {
-//     next(new ExpressError('Page Not Found', 404))
-// })
 
-// app.use((err, req, res, next) => {
-//     const { statusCode = 500 } = err;
-//     if (!err.message) err.message = 'Something went wrong';
-//     res.status(statusCode).render("error", { err });
-// })
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = 'Something ggggwent wrong';
+    res.status(statusCode).render("error", { err });
+})
 
 
 
