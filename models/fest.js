@@ -54,10 +54,10 @@ FestSchema.virtual('carousel').get(function () {
 FestSchema.virtual('small').get(function () {
     return this.image.replace('/upload', '/upload/w_200')
 })
-// CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
-//     return `<strong><a href='/campgrounds/${this._id}'>${this.title}</a></strong>
-//     <p>${this.description.substring(0, 20)}...</p>`
-// })
+FestSchema.virtual('properties.popUpMarkup').get(function () {
+    return `<strong><a href='/fests/${this._id}'>${this.title}</a></strong>
+    <p>${this.description.substring(0, 20)}...</p>`
+})
 
 FestSchema.post('findOneAndDelete', async (doc) => {
     if (doc) {

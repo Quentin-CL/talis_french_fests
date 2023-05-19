@@ -3,6 +3,7 @@
 <section id="map">
   <h2>Carte interactive</h2>
   <small>Explorez notre carte interactive pour repérer facilement l'emplacement de chaque festival, et obtenez un aperçu des différents artistes qui se produiront lors de ces événements exceptionnels. De plus, nous vous fournissons des détails sur le nombre de festivaliers attendus, vous permettant ainsi de choisir entre des ambiances plus intimes ou des foules en délire.</small>
+  <div id="cluster-map"></div>
 </section>
 
 
@@ -21,9 +22,15 @@
       </div>
     <div>
 </section>
+<script>
+  const mapBoxToken = "<%-process.env.MAPBOX_TOKEN%>";
+  const fests = {features: <%- JSON.stringify(fests.slice(30,35)) %>};
+  // console.log(fests.features)
+</script>
 <script src="/libs/js/swiper-bundle.min.js"></script>
 <script src="/js/carousel.js"></script>
 
+<script src="/js/clusterMap.js"></script>
 
 
 

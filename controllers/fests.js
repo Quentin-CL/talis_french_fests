@@ -2,7 +2,7 @@ import Fest from '../models/fest.js';
 import { cloudinary } from '../cloudinary/index.js';
 
 export const index = async (req, res) => {
-    const fests = await Fest.find({});
+    const fests = await Fest.find({}).select('properties.popUpMarkup title geometry description image attendance');
     const favoriteFests = await Fest.find({ favorite: true })
 
     res.render('fests/index', { fests, favoriteFests, header: "Les festivals" });
