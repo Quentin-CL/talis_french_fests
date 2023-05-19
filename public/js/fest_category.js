@@ -7,7 +7,6 @@ for (const btnClose of btnCloses) {
 function updateCategoryArray(isDeleting, element) {
     const inputHidden = document.querySelector('input[name="fest[category]"]')
     const categories = inputHidden.value === '' ? [] : inputHidden.value.split(',');
-    console.log(categories)
     if (isDeleting) {
         categories.splice(categories.indexOf(element.value), 1)
     } else {

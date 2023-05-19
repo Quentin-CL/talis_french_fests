@@ -1,3 +1,5 @@
+import { festSchema, reviewSchema } from "./schemas.js";
+import ExpressError from "./utils/ExpressError.js";
 import Review from './models/review.js';
 
 export const isLoggedIn = (req, res, next) => {
@@ -7,6 +9,18 @@ export const isLoggedIn = (req, res, next) => {
         return res.redirect('/login');
     }
     next()
+}
+
+
+export const validateFest = (req, res, next) => {
+    req.body.fest.category = req.body.fest.category.split(',');
+    const { error } = festSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(",")
+        throw new ExpressError(msg, 400)
+    } else {
+        next()
+    }
 }
 
 // middleware d'autorisation pour vérifier si l'utilisateur est un administrateur
@@ -31,13 +45,12 @@ export const checkReturnTo = (req, res, next) => {
 //     const campground = await Campground.findById(id);
 //     if (!campground.author.equals(req.user._id)) {
 //         req.flash('error', "Vous n\'êtes pas autorisé à le faire");
-//         return res.redirect(`/fests/${campground._id}`)
+//         return res.redirect(`/ fests / ${ campground._id } `)
 //     }
 //     next();
 // }
 
 export const isReviewLoggedIn = (req, res, next) => {
-    console.log("fzefezfez")
     if (!req.isAuthenticated()) {
         return res.status(401).send("Tu doit être connecté !")
     }

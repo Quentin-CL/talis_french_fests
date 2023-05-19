@@ -2,15 +2,14 @@ import express from 'express';
 const router = express.Router();
 import * as fests from '../controllers/fests.js';
 import catchAsync from "../utils/catchAsync.js";
-// import * as campgrounds from '../controllers/campgrounds.js';
-import { isLoggedIn, isAdmin } from '../middleware.js';
+import { isLoggedIn, isAdmin, validateFest } from '../middleware.js';
 import multer from 'multer';
 import { storage } from "../cloudinary/index.js";
 const upload = multer({ storage });
 
 router.route('/')
     .get(catchAsync(fests.index))
-    .post(isAdmin, upload.array('image'), catchAsync(fests.newFest))
+    .post(isAdmin, upload.array('image'), validateFest, catchAsync(fests.newFest))
 
 router.route('/new')
     .get(fests.renderNewFest);

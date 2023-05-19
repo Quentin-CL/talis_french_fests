@@ -76,7 +76,6 @@ export const renderNewFest = (req, res) => {
 
 export const newFest = async (req, res) => {
     req.body.fest.favorite = req.body.fest.favorite ? true : false;
-    req.body.fest.category = req.body.fest.category.split(',');
     const img = req.files.map(f => (f.path));
     req.body.fest.image = img[0];
     const fest = new Fest(req.body.fest);

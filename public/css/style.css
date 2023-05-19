@@ -658,18 +658,24 @@ footer {
   margin: 0 auto;
 }
 
-#favorites {
+#favorites, #map {
   margin: 0 auto;
   max-width: 1400px;
-  padding: 4rem 2rem;
+  padding: 2rem;
 }
-#favorites i {
+#favorites i, #map i {
   color: #ee4266;
 }
-#favorites h2 {
+#favorites h2, #map h2 {
   font-weight: 700;
   font-size: 30px;
   margin-left: 2rem;
+}
+#favorites small, #map small {
+  color: #6C757D;
+  margin: 5px 0 0 4rem;
+  display: inline-block;
+  max-width: 1000px;
 }
 
 .swiper {

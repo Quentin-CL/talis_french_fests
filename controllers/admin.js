@@ -48,7 +48,6 @@ export const renderDashboardReviews = async (req, res) => {
             return res.redirect('/admin/users');
         }
         sortedReviews = [sortedReviews];
-        // res.send(sortedReviews)
     } else {
         const reviews = await Review.aggregate([
             { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'user' } },
@@ -58,7 +57,7 @@ export const renderDashboardReviews = async (req, res) => {
             { $sort: { 'fest.title': 1, createDate: -1 } },
             { $project: { _id: 1, body: 1, rating: 1, createDate: 1, isModerated: 1, 'user.username': 1, 'user._id': 1, 'fest.title': 1, 'fest._id': 1 } }]);
         // lookup permet de joindre les tables, unwind deplit la table que l'on a join et project permet de choisir les données à afficher
-        const countByFest = getTodayAndLastWeekReviewsCount(reviews)
+        const countByFest = getTodayAndLastWeekReviewsCount(reviews);
         sortedReviews = Object.keys(countByFest).sort((a, b) => {
             const countDiff = countByFest[b]['today'] - countByFest[a]['today']
             if (countDiff !== 0) {

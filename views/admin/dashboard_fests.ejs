@@ -17,9 +17,6 @@
                             <th scope="col"></th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td colspan="7" class="text-center"><a href="/fests/new" class="btn btn-dark bnt-sm">Nouveau</a></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -76,13 +73,17 @@
 
     function renderTable() {
         const tableBody = document.querySelector('tbody');
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = `
+            <tr>
+            <td colspan="7" class="text-center"><a href="/fests/new" class="btn btn-dark bnt-sm">Nouveau</a></td>
+            </tr>`;
 
         fests.forEach(fest => {
             const row = document.createElement('tr');
+            const mailingAddress = fest.mailing_adress ? `${fest.mailing_adress}` : '';
             row.innerHTML = `
                 <th scope="row">${fest.title}</th>
-                <td>${fest.mailing_adress} ${fest.zip_code} ${fest.municipality}</td>
+                <td>${mailingAddress} ${fest.zip_code} ${fest.municipality}</td>
                 <td>${fest.creation_year}</td>
                 <td>${fest.attendance}</td>
                 <td><a href="/fests/${fest.id}" target="_blank" class="btn btn-info btn-sm">Voir</a></td>

@@ -12,6 +12,8 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 import User from './models/user.js';
 import ExpressError from "./utils/ExpressError.js";
+import mongoSanitize from 'express-mongo-sanitize';
+import helmet from 'helmet';
 
 const dbUrl = 'mongodb://localhost:27017/french-fests';
 mongoose.set('strictQuery', false);
@@ -44,6 +46,56 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(mongoSanitize());
+app.use(helmet({
+    crossOriginEmbedderPolicy: false,
+}));
+
+const scriptSrcUrls = [
+    "https://stackpath.bootstrapcdn.com/",
+    "https://api.tiles.mapbox.com/",
+    "https://api.mapbox.com/",
+    "https://kit.fontawesome.com/",
+    "https://cdnjs.cloudflare.com/",
+    "https://cdn.jsdelivr.net",
+];
+const styleSrcUrls = [
+    "https://kit-free.fontawesome.com/",
+    "https://stackpath.bootstrapcdn.com/",
+    "https://api.mapbox.com/",
+    "https://api.tiles.mapbox.com/",
+    "https://fonts.googleapis.com/",
+    "https://use.fontawesome.com/",
+    "https://cdn.jsdelivr.net",
+];
+const connectSrcUrls = [
+    "https://api.mapbox.com/",
+    "https://a.tiles.mapbox.com/",
+    "https://b.tiles.mapbox.com/",
+    "https://events.mapbox.com/",
+];
+const fontSrcUrls = ["data:"];
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: [],
+            connectSrc: ["'self'", ...connectSrcUrls],
+            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            workerSrc: ["'self'", "blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/dnofzucxg/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
+                "https://images.unsplash.com/",
+            ],
+            fontSrc: ["'self'", ...fontSrcUrls],
+        },
+    })
+);
 
 const store = new MongoStore({
     mongoUrl: dbUrl,
@@ -78,25 +130,6 @@ app.use(passport.session());
 // passport.use(new LocalStrategy(User.authenticate()));
 passport.use(new LocalStrategy(User.authenticate()))
 
-passport.use('admin-login', new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
-}, (email, password, done) => {
-    User.findOne({ email: email }, (err, user) => {
-        if (err) { return done(err); }
-        if (!user) {
-            return done(null, false, { message: 'Incorrect email.' });
-        }
-        if (!user.isAdmin) {
-            return done(null, false, { message: 'Not an admin.' });
-        }
-        if (!user.validPassword(password)) {
-            return done(null, false, { message: 'Incorrect password.' });
-        }
-        return done(null, user);
-    });
-}
-));
 
 // Tell how to store and unstore a user
 passport.serializeUser(User.serializeUser());
@@ -116,18 +149,18 @@ app.use('/admin', adminRoutes)
 app.use('/', generalRoutes)
 
 app.all('*', (req, res, next) => {
-    next(new ExpressError('Page non trouvé', 404))
+    next(new ExpressError('Page non trouvée', 404))
 })
 
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
-    if (!err.message) err.message = 'Something ggggwent wrong';
+    if (!err.message) err.message = 'Quelque chose s\' est mal passé !';
     res.status(statusCode).render("error", { err });
 })
 
 
 
 
-app.listen(3001, () => {
-    console.log("Listening on port 3001")
+app.listen(3000, () => {
+    console.log("Listening on port 3000")
 })

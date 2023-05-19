@@ -26,11 +26,10 @@ export function getTodayAndLastWeekReviewsCount(reviews) {
             count[festId] = (count[festId] || { 'today': 0 });
         }
         if (reviewDate >= sixDaysAgo && reviewDate < today) {
-            count[festId] = (count[festId] || {});
             count[festId]['week'] = (count[festId]['week'] || 0) + 1;
         }
         else {
-            count[festId] = (count[festId] || { 'week': 0 });
+            count[festId]['week'] = (count[festId]['week'] || 0);
         }
         return count;
     }, {});

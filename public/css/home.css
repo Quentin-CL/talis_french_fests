@@ -22,7 +22,7 @@ header{
     width: 100%;
 }
 .black-overlay{
-    background: linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.3) 100%);
+    background: linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0.5) 25%, rgba(0,0,0,0.5) 100%);
     top: 0;
     height: 90%;
 }
@@ -38,6 +38,14 @@ header p {
 
 header p:last-of-type{
     margin-bottom: 2rem;
+}
+header strong{
+  font-size: 30px;
+  color: #ffd23f;
+  margin-bottom: 1rem;
+  line-height: 40px;
+  display: inline-block;
+
 }
 
 /* Le giltch  */

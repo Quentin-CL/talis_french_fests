@@ -2,15 +2,7 @@ import pkg from 'joi';
 const { ref } = pkg;
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
-// import Review from './review.js';
-
-
-// const ImageSchema = new Schema({
-//     url: String,
-//     filename: String
-// });
-
-
+import Review from './review.js';
 
 // Par defaut, la conversion des données Mongoose en JSON n'inclut pas les virtuals => Option par defaut à changer
 const opts = { toJSON: { virtuals: true } }
@@ -28,7 +20,6 @@ const FestSchema = new Schema({
             // required: true
         }
     },
-    // geometry: String,
     category: [String],
     description: String,
     attendance: Number,
@@ -68,13 +59,13 @@ FestSchema.virtual('small').get(function () {
 //     <p>${this.description.substring(0, 20)}...</p>`
 // })
 
-// CampgroundSchema.post('findOneAndDelete', async (doc) => {
-//     if (doc) {
-//         await Review.deleteMany({
-//             _id: {
-//                 $in: doc.reviews
-//             }
-//         })
-//     }
-// })
+FestSchema.post('findOneAndDelete', async (doc) => {
+    if (doc) {
+        await Review.deleteMany({
+            _id: {
+                $in: doc.reviews
+            }
+        })
+    }
+})
 export default mongoose.model('Fest', FestSchema)
