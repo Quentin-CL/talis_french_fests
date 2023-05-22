@@ -61,3 +61,8 @@ th{
     top:0;
     height: calc(100vh - 70px)
 }
+
+.hide{
+    z-index: -1;
+    position: relative;
+}

@@ -37,9 +37,10 @@
         max-width: 600px;
     }
     .links{
-        @include flex(end)
+        @include flex(end);
+        gap:  10px;
     }
-    .btn-more{
+    .btn-more,.btn-locate{
         background-color: #E2E2E2;
     }
     h1{

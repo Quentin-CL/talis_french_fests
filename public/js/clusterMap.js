@@ -21,7 +21,11 @@ map.on('load', () => {
         data: fests,
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
-        clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+        clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
+        clusterProperties: {
+            // Calculate the maximum attendance within each cluster
+            maxAttendance: ['max', ['get', 'attendance']]
+        }
     });
 
     map.addLayer({
@@ -37,12 +41,24 @@ map.on('load', () => {
             //   * Pink, 40px circles when point count is greater than or equal to 750
             'circle-color': [
                 'step',
-                ['get', 'attendance'],
-                '#51bbd6',  //'#51bbd6'
+                ['get', 'maxAttendance'],
+                '#EBCCFF',
                 30000,
-                '#f1f075', //#f1f075
+                '#E3A3FF',
+                40000,
+                '#E27AFF',
+                50000,
+                '#E852FF',
                 60000,
-                '#f28cb1' //Cherche 
+                '#F229FF',
+                70000,
+                '#FF00FE',
+                80000,
+                '#D5009A',
+                90000,
+                '#AA0048',
+                100000,
+                '#80000C'
             ],
             'circle-radius': [
                 'step',
@@ -64,7 +80,10 @@ map.on('load', () => {
         layout: {
             'text-field': ['get', 'point_count_abbreviated'],
             'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-            'text-size': 12
+            'text-size': 12,
+        },
+        paint: {
+            "text-color": "#ffffff"
         }
     });
 
@@ -77,11 +96,23 @@ map.on('load', () => {
             'circle-color': [
                 'step',
                 ['get', 'attendance'],
-                '#51bbd6',  //'#51bbd6'
+                '#EBCCFF',
                 30000,
-                '#f1f075', //#f1f075
+                '#E3A3FF',
+                40000,
+                '#E27AFF',
+                50000,
+                '#E852FF',
                 60000,
-                '#f28cb1' //#f28cb1
+                '#F229FF',
+                70000,
+                '#FF00FE',
+                80000,
+                '#D5009A',
+                90000,
+                '#AA0048',
+                100000,
+                '#80000C'
             ],
             'circle-radius': 5,
             'circle-stroke-width': 1,
@@ -130,10 +161,42 @@ map.on('load', () => {
             .addTo(map);
     });
 
+    map.on('mouseenter', 'unclustered-point', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'unclustered-point', () => {
+        map.getCanvas().style.cursor = '';
+    });
     map.on('mouseenter', 'clusters', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
     map.on('mouseleave', 'clusters', () => {
         map.getCanvas().style.cursor = '';
     });
+    createLegend();
 });
+
+
+function createLegend() {
+    const legendContainer = document.getElementById('legend');
+    const legendColors = [
+        { color: '#EBCCFF', attendance: 'Moins de 30' },
+        { color: '#E3A3FF', attendance: '30-40' },
+        { color: '#E27AFF', attendance: '40-50' },
+        { color: '#E852FF', attendance: '50-60' },
+        { color: '#F229FF', attendance: '60-70' },
+        { color: '#FF00FE', attendance: '70-80' },
+        { color: '#D5009A', attendance: '80-90' },
+        { color: '#AA0048', attendance: '90-100' },
+        { color: '#80000C', attendance: 'Plus de 100' }
+    ];
+
+    let legendHTML = '<span>Nombre d\'entrée (en millier de places vendues en 2019)</span > ';
+
+    for (const colorItem of legendColors) {
+        const { color, attendance } = colorItem;
+        legendHTML += `<div><span class="legend-color" style="background-color: ${color};"></span>${attendance}</div>`;
+    }
+
+    legendContainer.innerHTML = legendHTML;
+}

@@ -56,6 +56,8 @@
                 display: none;
             }
             &:nth-of-type(2){
+                position: fixed;
+                right: 30px;
                 display: block;
             }
         }
@@ -64,7 +66,7 @@
 
 .nav-bar{
     z-index: 100;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;

@@ -17,8 +17,9 @@ function setModal(btn, modal, close) {
         modal.classList.add('display-none');
     })
     window.addEventListener('click', (e) => {
-        if (e.target.id === modal.id)
+        if (e.target.id === modal.id) {
             modal.classList.add('display-none');
+        }
     })
 }
 

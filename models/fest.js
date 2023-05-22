@@ -55,8 +55,9 @@ FestSchema.virtual('small').get(function () {
     return this.image.replace('/upload', '/upload/w_200')
 })
 FestSchema.virtual('properties.popUpMarkup').get(function () {
-    return `<strong><a href='/fests/${this._id}'>${this.title}</a></strong>
-    <p>${this.description.substring(0, 20)}...</p>`
+    return `<h3 class = 'map--small-title'><a href='/fests/${this._id}'>${this.title}</h3>
+    <img class = 'map--small-img' src='${this.small}'></a>
+    <p class = 'map--small-desc'>${this.description.substring(0, 40)}...</p>`
 })
 
 FestSchema.post('findOneAndDelete', async (doc) => {
