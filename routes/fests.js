@@ -16,7 +16,7 @@ router.route('/new')
 
 router.route('/:id')
     .get(catchAsync(fests.showFest))
-    .put(isAdmin, upload.array('image'), catchAsync(fests.updateFest))
+    .put(isAdmin, upload.array('image'), validateFest, catchAsync(fests.updateFest))
     .delete(isAdmin, catchAsync(fests.deleteFest));
 
 router.route('/:id/edit')

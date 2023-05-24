@@ -2,4 +2,54 @@
     .swiper {
         padding: 2rem 0;
     }
+    .btn-text{
+        display: none;
+    }
+    .btn-login, .btn-register, .btn-logout{
+        border: none;
+        padding-left: 10px ;
+        padding-right: 10px;
+    }
+}
+
+@include mq('tablet', max){
+    #navbar-container{
+        >div:first-of-type{
+            max-width: 250px;
+            padding-top: 1rem;
+        }
+    }
+    #home-header{
+        padding: 0 1rem;
+        strong{
+            font-size: 25px;
+        }
+        p:last-of-type{
+            font-size: 18px;
+        }
+    }
+}
+
+@include mq('phone-wide', max){
+    #home-header{
+        p{
+            line-height: 25px ;
+        }
+        .btn-home{
+            font-size: 20px ;
+        }
+    }
+    .btn-login, .btn-register, .btn-logout{
+        padding-left: 5px ;
+        padding-right: 5px;
+    }
+}
+
+@include mq('phablet', max){
+    #navbar-container{
+        >div:first-of-type{
+            max-width: 150px;
+            padding-top: 2rem;
+        }
+    }
 }

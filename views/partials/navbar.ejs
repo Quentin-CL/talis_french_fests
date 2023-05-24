@@ -4,13 +4,13 @@
   </div>
   <div class="nav-user">
     <%if(!currentUser){%>
-      <button class="button btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se connecter</button>
-      <button class="button btn-register"><i class="fa fa-user"></i> S'inscrire</button>
+      <button class="button btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i><span class="btn-text"> Se connecter</span></button>
+      <button class="button btn-register"><i class="fa fa-user"></i><span class="btn-text"> S'inscrire</span></button>
     <% } else { %>
       <%if(currentUser.isAdmin){%>
-        <a class="button btn-logout" href="/admin/fests"><i class="fa-solid fa-toolbox"></i> Dashboard</a>
+        <a class="button btn-logout" href="/admin/fests"><i class="fa-solid fa-toolbox"></i><span class="btn-text"> Dashboard</span></a>
       <% } %>
-      <a class="button btn-logout" href="/logout"><i class="fa-solid fa-arrow-right-to-bracket"></i> Se deconnecter</a>
+      <a class="button btn-logout" href="/logout"><i class="fa-solid fa-arrow-right-to-bracket"></i><span class="btn-text"> Se deconnecter</span></a>
     <% } %>
   </div>
   <div class="burger">

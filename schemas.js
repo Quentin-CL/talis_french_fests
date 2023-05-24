@@ -35,12 +35,12 @@ export const festSchema = Joi.object({
         municipality: Joi.string().escapeHTML(),
         creation_year: Joi.number().required().min(1800).max(currentYear),
         website: Joi.string().uri({ scheme: ['http', 'https'], allowRelative: true }).required(),
-        mail: Joi.string().email(),
+        mail: Joi.string().email().allow(''),
         period: Joi.string().valid('Avant-saison (1er janvier - 20 juin)', 'Saison (21 juin - 5 septembre)', 'Après-saison (6 septembre - 31 décembre)').required(),
         // image: Joi.string().required(),
         description: Joi.string().allow('').escapeHTML(),
     }),
-    deleteImages: Joi.array()
+    deletedImage: Joi.string()
 });
 
 export const reviewSchema = Joi.object({

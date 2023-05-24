@@ -28,9 +28,14 @@ export const renderLogin = (req, res) => {
 export const authenticate = (req, res, next) => {
     const protocol = req.protocol;
     const host = req.get('host');
+    console.log(host);
+    console.log(req.headers.referer)
     const relativeUrl = req.headers.referer.substring(`${protocol}://${host}`.length);
+    console.log(relativeUrl);
     const failureUrl = relativeUrl.slice(0, 6) === '/login' ? relativeUrl : `/login?returnTo=${relativeUrl}`;
+    console.log(failureUrl);
     const callback = passport.authenticate('local', { failureFlash: true, failureRedirect: failureUrl });
+    console.log(callback);
     return callback(req, res, next)
 }
 

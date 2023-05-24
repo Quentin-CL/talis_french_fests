@@ -50,6 +50,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 app.use(helmet({
     crossOriginEmbedderPolicy: false,
+    referrerPolicy: {
+        policy: ['same-origin']
+    }
 }));
 
 const scriptSrcUrls = [

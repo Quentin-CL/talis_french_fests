@@ -45,7 +45,6 @@ export const renderEditFest = async (req, res) => {
 export const updateFest = async (req, res) => {
     const { id } = req.params;
     req.body.fest.favorite = req.body.fest.favorite ? true : false;
-    req.body.fest.category = req.body.fest.category.split(',');
     req.body.fest.image = req.body.deletedImage;
     const fest = await Fest.findByIdAndUpdate(id, req.body.fest);
     if (req.files.length != 0) {
@@ -76,8 +75,7 @@ export const renderNewFest = (req, res) => {
 
 export const newFest = async (req, res) => {
     req.body.fest.favorite = req.body.fest.favorite ? true : false;
-    const img = req.files.map(f => (f.path));
-    req.body.fest.image = img[0];
+    req.body.fest.image = req.files[0].path;
     const fest = new Fest(req.body.fest);
     await fest.save();
     req.flash('success', 'Festival ajouté avec succés');

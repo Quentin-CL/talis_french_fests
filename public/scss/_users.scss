@@ -143,15 +143,14 @@
   border-color: white;
   transition: all 0.5s;
   background: none;
-  i{
+  i,.btn-text{
     transition: all 0.5s;
     color: white;
   }
   &:hover{
     cursor: pointer;
-    color: black;
     background-color: $gray3;
-    i{
+    i,.btn-text{
       color: black;
     }
     }

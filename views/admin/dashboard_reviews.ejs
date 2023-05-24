@@ -7,9 +7,11 @@
                 <h1 class="h1 text-center my-4">Avis</h1>
                 <hr>
                 <% for (let i = 0; i< sortedReviews.length; i++){
-                    const sortedReview = sortedReviews[i] 
-                    const todayReview = sortedReview[sortedReview.length -1].today
+                    const sortedReview = sortedReviews[i] ;
+                    const todayReview = sortedReview[sortedReview.length -1].today;
+                    let NReviews = sortedReview.length;
                     if(!query){
+                        NReviews = sortedReview.length -1;
                     %>
                     <div class="accordion" >
                         <div class="accordion-item position-relative">
@@ -34,7 +36,7 @@
                                                 <th></th>
                                         </thead>
                                         <tbody>
-                                            <% for (let j = 0; j < sortedReview.length -1; j++){ 
+                                            <% for (let j = 0; j < NReviews; j++){ 
                                                 review = sortedReview[j] %>
                                             <tr class="<%= review.isModerated ? 'table-danger' : ''%>">
                                                 <% if (j < todayReview) { %>
