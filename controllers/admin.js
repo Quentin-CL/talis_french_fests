@@ -69,7 +69,6 @@ export const renderDashboardReviews = async (req, res) => {
             return reviews.filter(review => review.fest._id.equals(festId)).concat(countByFest[festId]);
         });
     }
-    console.log(sortedReviews[0])
     res.render('admin/dashboard_reviews', { sortedReviews, boostrap: true, getFullDate, query: author });
 }
 
