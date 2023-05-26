@@ -21,7 +21,8 @@ $(document).ready(function () {
     $(document).on("click", ".validate-btn", function () {
         const url = $(this).parent().attr("data-send");
         const $input = $(this).siblings("textarea");
-        const newReview = $input.val().trim();
+        let newReview = $input.val().trim();
+        newReview = newReview.replace(/[&<>]/g, '');
         fetch(url, {
             method: "PUT", // specify the HTTP method as "PUT" since we are updating data
             headers: {

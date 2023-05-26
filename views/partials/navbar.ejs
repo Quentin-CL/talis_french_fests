@@ -34,7 +34,7 @@
     <h6>C'est simple et gratuit. Cela vous permet de partager votre avis avec des miliers de fétard dans la monde.</h6>
     <span class="close"><i class="fa-solid fa-xmark"></i></span>
     <div class="modal-body">
-      <form action="/register" method="post" onsubmit="return validateRegisterForm(event)">
+      <form action="/register" method="post">
       <div class="form-control">
           <label for="rUsername">Nom d'utilisateur</label>
           <input type="text" name="username" id="rUsername" placeholder="Nom d'utilisateur">
@@ -66,7 +66,7 @@
     <h3>Connectez-vous</h3>
     <span class="close"><i class="fa-solid fa-xmark"></i></span>
     <div class="modal-body">
-      <form action="/login" method="post" onsubmit="return validateLoginFormModal(event)">
+      <form action="/login" method="post" >
       <div class="form-control">
           <label for="lUsername">Nom d'utilisateur</label>
           <input type="text" name="username" id="lUsername" placeholder="Nom d'utilisateur">

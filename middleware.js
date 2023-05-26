@@ -1,4 +1,4 @@
-import { festSchema, reviewSchema } from "./schemas.js";
+import { festSchema, reviewSchema, reviewSchemaUpdate } from "./schemas.js";
 import ExpressError from "./utils/ExpressError.js";
 import Review from './models/review.js';
 
@@ -64,4 +64,24 @@ export const isReviewAuthor = async (req, res, next) => {
         return res.status(401).send("Vous n\'êtes pas autorisé à le faire")
     }
     next();
+}
+
+export const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(",")
+        throw new ExpressError(msg, 400)
+    } else {
+        next()
+    }
+}
+
+export const validateReviewUpdate = (req, res, next) => {
+    const { error } = reviewSchemaUpdate.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(",")
+        throw new ExpressError(msg, 400)
+    } else {
+        next()
+    }
 }

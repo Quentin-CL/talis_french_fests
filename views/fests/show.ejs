@@ -30,7 +30,7 @@
         <div class="comments">
             <h2>Commentaires</h2>
             <% if(currentUser){ %>
-            <form action="/fests/<%= fest.id %>/reviews" method="post" class="new-comment" onsubmit="return validateReviewForm(event)">
+            <form action="/fests/<%= fest.id %>/reviews" method="post" class="new-comment" >
                 <fieldset class="starability-grow form-control" required>
                     <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
                     <input type="radio" id="first-rate1" name="review[rating]" value="1" />

@@ -12,6 +12,16 @@
     }
 }
 
+
+
+@include mq('tablet-wide', max){
+    #fest-show-container .accordion{
+        &.open{
+                padding-bottom: 22%;
+        }   
+    }
+}
+
 @include mq('tablet', max){
     #navbar-container{
         >div:first-of-type{
@@ -28,6 +38,20 @@
             font-size: 18px;
         }
     }
+
+    #fest-show-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: min-content 1fr;
+    }
+    #fest-show-container .poster-container{
+        max-width: 400px;
+        justify-self: center;
+    }
+    #fest-show-container .accordion{
+        &.open{
+                padding-bottom: 15%;
+        }   
+    }
 }
 
 @include mq('phone-wide', max){
@@ -42,6 +66,11 @@
     .btn-login, .btn-register, .btn-logout{
         padding-left: 5px ;
         padding-right: 5px;
+    }
+    #fest-show-container .accordion{
+        &.open{
+                padding-bottom: 26%;
+        }   
     }
 }
 

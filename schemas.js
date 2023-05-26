@@ -49,3 +49,6 @@ export const reviewSchema = Joi.object({
         body: Joi.string().escapeHTML()
     }).required()
 })
+export const reviewSchemaUpdate = Joi.object({
+    'body': Joi.string().escapeHTML().required()
+})
