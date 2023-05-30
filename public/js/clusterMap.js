@@ -7,7 +7,7 @@ const map = new mapboxgl.Map({
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
     style: 'mapbox://styles/mapbox/light-v11',
     center: [2.2, 46],
-    zoom: 5
+    zoom: getInitialZoomAndLegendPosition().zoom
 });
 const nav = new mapboxgl.NavigationControl();
 map.addControl(nav);
@@ -176,9 +176,28 @@ map.on('load', () => {
     createLegend();
 });
 
+function getInitialZoomAndLegendPosition() {
+    // Calculez le zoom initial en fonction de la taille de l'écran
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+        return { 'zoom': 4, 'legendPosition': 'out' }; // Zoom pour les petits écrans
+    } else if (screenWidth >= 768 && screenWidth < 1024) {
+        return { 'zoom': 4, 'legendPosition': 'in' }; // Zoom pour les écrans moyens
+    } else {
+        return { 'zoom': 5, 'legendPosition': 'in' }; // Zoom pour les grands écrans
+    }
+}
+
+// Ajoutez un événement de redimensionnement à la fenêtre pour ajuster le zoom en fonction de la taille de l'écran
+window.addEventListener('resize', () => {
+    map.setZoom(getInitialZoomAndLegendPosition().zoom);
+});
 
 function createLegend() {
-    const legendContainer = document.getElementById('legend');
+    const legendContainer = document.getElementById('cluster-map');
+
+    const legend = document.createElement("div");
+    legend.setAttribute("class", 'legend');
     const legendColors = [
         { color: '#EBCCFF', attendance: 'Moins de 30' },
         { color: '#E3A3FF', attendance: '30-40' },
@@ -197,6 +216,7 @@ function createLegend() {
         const { color, attendance } = colorItem;
         legendHTML += `<div><span class="legend-color" style="background-color: ${color};"></span>${attendance}</div>`;
     }
+    legend.innerHTML = legendHTML;
+    legendContainer.append(legend)
 
-    legendContainer.innerHTML = legendHTML;
 }

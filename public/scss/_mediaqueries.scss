@@ -20,6 +20,10 @@
                 padding-bottom: 22%;
         }   
     }
+    #cluster-map{
+        width: 90%;
+
+      }
 }
 
 @include mq('tablet', max){
@@ -52,6 +56,41 @@
                 padding-bottom: 15%;
         }   
     }
+    #cluster-map>.legend{
+        display: none;
+    }
+    #map{
+        text-align: center  ;
+        h2,small{
+            text-align: start;
+        }
+    }
+    #map .small-legend{
+        display: inline-block;
+        text-align: center;
+        background-color: #ffffff;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        span{
+            display: inline-block;
+            width: 45vw;
+            font-size: 12px;
+        }
+        margin-top: 1rem;
+    }
+    #map .legend-gradient{
+        margin: 0 auto 8px;
+        width: 50vw;
+        height: 1rem;
+        background: rgb(235,204,255);
+        background: linear-gradient(90deg, rgba(235,204,255,1) 0%, rgba(242,41,255,1) 50%, rgba(128,0,12,1) 100%);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        
+    }
+
 }
 
 @include mq('phone-wide', max){
@@ -63,14 +102,14 @@
             font-size: 20px ;
         }
     }
-    .btn-login, .btn-register, .btn-logout{
-        padding-left: 5px ;
-        padding-right: 5px;
-    }
     #fest-show-container .accordion{
         &.open{
                 padding-bottom: 26%;
         }   
+    }
+    .nav-user{
+        right: unset;
+        left: 25px;
     }
 }
 

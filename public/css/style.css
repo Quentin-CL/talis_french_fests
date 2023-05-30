@@ -680,9 +680,8 @@ footer {
 }
 #favorites small, #map small {
   color: #6C757D;
-  margin: 5px 0 0 4rem;
+  margin: 10px 0 0 2rem;
   display: inline-block;
-  max-width: 1000px;
 }
 
 .swiper {
@@ -717,6 +716,9 @@ footer {
   position: relative;
   z-index: 0;
 }
+#map .small-legend {
+  display: none;
+}
 
 #cluster-map {
   height: 50vw;
@@ -725,7 +727,7 @@ footer {
   position: relative;
 }
 
-#legend {
+.legend {
   position: absolute;
   max-width: 150px;
   top: 50%;
@@ -739,7 +741,7 @@ footer {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 2;
 }
-#legend div {
+.legend div {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
@@ -1070,6 +1072,9 @@ footer {
   #fest-show-container .accordion.open {
     padding-bottom: 22%;
   }
+  #cluster-map {
+    width: 90%;
+  }
 }
 @media only screen and (max-width: 767px) {
   #navbar-container > div:first-of-type {
@@ -1096,6 +1101,39 @@ footer {
   #fest-show-container .accordion.open {
     padding-bottom: 15%;
   }
+  #cluster-map > .legend {
+    display: none;
+  }
+  #map {
+    text-align: center;
+  }
+  #map h2, #map small {
+    text-align: start;
+  }
+  #map .small-legend {
+    display: inline-block;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+  }
+  #map .small-legend span {
+    display: inline-block;
+    width: 45vw;
+    font-size: 12px;
+  }
+  #map .legend-gradient {
+    margin: 0 auto 8px;
+    width: 50vw;
+    height: 1rem;
+    background: rgb(235, 204, 255);
+    background: linear-gradient(90deg, rgb(235, 204, 255) 0%, rgb(242, 41, 255) 50%, rgb(128, 0, 12) 100%);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 }
 @media only screen and (max-width: 479px) {
   #home-header p {
@@ -1104,12 +1142,12 @@ footer {
   #home-header .btn-home {
     font-size: 20px;
   }
-  .btn-login, .btn-register, .btn-logout {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
   #fest-show-container .accordion.open {
     padding-bottom: 26%;
+  }
+  .nav-user {
+    right: unset;
+    left: 25px;
   }
 }
 @media only screen and (max-width: 559px) {
