@@ -32,6 +32,9 @@ if (document.querySelector('.btn-show-more')) {
     setModal(document.querySelector('.btn-show-more'), document.querySelector('#modal-comments'), document.querySelector('#modal-comments .close'));
 }
 
+if (document.querySelector('.btn-locate')) {
+    setModal(document.querySelector('.btn-locate'), document.querySelector('#modal-locate'), document.querySelector('#modal-locate .close'));
+}
 
 function setFlash(btn, flash) {
     btn.addEventListener('click', () => {

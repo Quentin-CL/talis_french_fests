@@ -1,5 +1,9 @@
 import Fest from '../models/fest.js';
 import { cloudinary } from '../cloudinary/index.js';
+import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding.js';
+const mapboxApiKey = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapboxApiKey });
+
 
 export const index = async (req, res) => {
     const fests = await Fest.find({}).select('properties.popUpMarkup title geometry description image attendance');
@@ -73,9 +77,14 @@ export const renderNewFest = (req, res) => {
 }
 
 export const newFest = async (req, res) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: `${req.body.fest.mailing_adress} ${req.body.fest.zip_code} ${req.body.fest.municipality}, France`,
+        limit: 1
+    }).send();
     req.body.fest.favorite = req.body.fest.favorite ? true : false;
     req.body.fest.image = req.files[0].path;
     const fest = new Fest(req.body.fest);
+    fest.geometry = geoData.body.features[0].geometry;
     await fest.save();
     req.flash('success', 'Festival ajouté avec succés');
     res.redirect('/admin/fests');

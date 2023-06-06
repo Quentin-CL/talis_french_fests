@@ -114,7 +114,6 @@
                         </div>
                     </div>
                     <% } %>
-
             </div>
             <div class="comment-body">
                 <div class="rating">
@@ -132,6 +131,19 @@
   </div>
 </div>
 
-
+<div id="modal-locate" class="modal display-none">
+    <div class="modal-content">
+        <span class="close"><i class="fa-solid fa-xmark"></i></span>
+        <h3>Localiser le festival</h3>
+        <div class="comment-body">
+            <div id="map-locate"></div>
+        </div>
+    </div>
+</div>
+<script>
+  const mapBoxToken = "<%-process.env.MAPBOX_TOKEN%>";
+  const fest = <%- JSON.stringify(fest) %>;
+</script>
+<script src="/js/showPageMap.js"></script>
 <script src="/js/accordion.js"></script>
 <script src="/js/comments.js"></script>

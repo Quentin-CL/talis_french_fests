@@ -276,3 +276,22 @@
     }
   }
 }
+#modal-locate{
+  #map-locate{
+    height: 400px;
+    width: 100%;
+    .adress{
+      line-height: 12px;
+      font-size: 12px;
+      color: $gray1;
+    }
+    h3{
+      font-weight: 700 ;
+      font-size: 20px;
+    }
+  }
+}
+
+.btn-locate:hover{
+  cursor: pointer;
+}

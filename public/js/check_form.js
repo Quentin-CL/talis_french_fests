@@ -44,11 +44,6 @@ const checkPasswordMatch = (input1, input2) => {
     return true
 };
 
-const getFieldName = (input) => {
-    const firstLetter = input.id.charAt(0).toUpperCase();
-    return firstLetter + input.id.slice(1);
-};
-
 const checkLength = (input, min, max) => {
     if (input.value.length < min || input.value.length > max) {
         showError(

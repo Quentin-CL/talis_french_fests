@@ -335,7 +335,7 @@ footer {
   text-decoration: none;
 }
 
-#modal-register, #modal-login, #modal-comments {
+#modal-register, #modal-login, #modal-comments, #modal-locate {
   position: fixed;
   z-index: 10;
   padding-top: 160px;
@@ -346,21 +346,21 @@ footer {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
-#modal-register .close, #modal-login .close, #modal-comments .close {
+#modal-register .close, #modal-login .close, #modal-comments .close, #modal-locate .close {
   position: absolute;
   top: 1rem;
   right: 2rem;
   font-size: 25px;
 }
-#modal-register .close:hover, #modal-login .close:hover, #modal-comments .close:hover {
+#modal-register .close:hover, #modal-login .close:hover, #modal-comments .close:hover, #modal-locate .close:hover {
   cursor: pointer;
   transform: scale(1.05);
 }
-#modal-register .close i, #modal-login .close i, #modal-comments .close i {
+#modal-register .close i, #modal-login .close i, #modal-comments .close i, #modal-locate .close i {
   color: black;
 }
 
-#modal-register .modal-content, #modal-login .modal-content, .form-login-container .modal-content, #modal-comments .modal-content {
+#modal-register .modal-content, #modal-login .modal-content, .form-login-container .modal-content, #modal-comments .modal-content, #modal-locate .modal-content {
   text-align: center;
   background-color: white;
   border: 1px solid #383b3c;
@@ -377,24 +377,24 @@ footer {
   overflow-y: auto; /* permet l'affichage de la barre de défilement verticale en cas de dépassement de la hauteur maximale */
   max-height: 550px;
 }
-#modal-register h3, #modal-login h3, .form-login-container h3, #modal-comments h3 {
+#modal-register h3, #modal-login h3, .form-login-container h3, #modal-comments h3, #modal-locate h3 {
   font-weight: 500;
   font-size: 30px;
   margin-bottom: 1rem;
 }
-#modal-register h6, #modal-login h6, .form-login-container h6, #modal-comments h6 {
+#modal-register h6, #modal-login h6, .form-login-container h6, #modal-comments h6, #modal-locate h6 {
   color: #383b3c;
   margin: 0 0 2rem;
   line-height: 18px;
 }
-#modal-register form, #modal-login form, .form-login-container form, #modal-comments form {
+#modal-register form, #modal-login form, .form-login-container form, #modal-comments form, #modal-locate form {
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
   gap: 10px;
 }
-#modal-register form > div, #modal-login form > div, .form-login-container form > div, #modal-comments form > div {
+#modal-register form > div, #modal-login form > div, .form-login-container form > div, #modal-comments form > div, #modal-locate form > div {
   display: flex;
   justify-content: start;
   align-items: start;
@@ -402,23 +402,23 @@ footer {
   gap: 5px;
   font-size: 14px;
 }
-#modal-register form label, #modal-login form label, .form-login-container form label, #modal-comments form label {
+#modal-register form label, #modal-login form label, .form-login-container form label, #modal-comments form label, #modal-locate form label {
   margin-left: 10px;
 }
-#modal-register form input, #modal-login form input, .form-login-container form input, #modal-comments form input {
+#modal-register form input, #modal-login form input, .form-login-container form input, #modal-comments form input, #modal-locate form input {
   border-radius: 15px;
   border: 2px solid #B9B9B9;
   padding: 15px 15px;
   font-size: 16px;
 }
-#modal-register .btn-submit-user, #modal-login .btn-submit-user, .form-login-container .btn-submit-user, #modal-comments .btn-submit-user {
+#modal-register .btn-submit-user, #modal-login .btn-submit-user, .form-login-container .btn-submit-user, #modal-comments .btn-submit-user, #modal-locate .btn-submit-user {
   background-color: #ee4266;
   border: none;
   color: white;
   margin-top: 1.5rem;
   font-weight: 700;
 }
-#modal-register .btn-submit-user:hover, #modal-login .btn-submit-user:hover, .form-login-container .btn-submit-user:hover, #modal-comments .btn-submit-user:hover {
+#modal-register .btn-submit-user:hover, #modal-login .btn-submit-user:hover, .form-login-container .btn-submit-user:hover, #modal-comments .btn-submit-user:hover, #modal-locate .btn-submit-user:hover {
   cursor: pointer;
 }
 
@@ -1053,6 +1053,24 @@ footer {
   border-color: black;
   border-width: 2px;
   outline: none;
+}
+
+#modal-locate #map-locate {
+  height: 400px;
+  width: 100%;
+}
+#modal-locate #map-locate .adress {
+  line-height: 12px;
+  font-size: 12px;
+  color: #6C757D;
+}
+#modal-locate #map-locate h3 {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.btn-locate:hover {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1247px) {

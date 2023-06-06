@@ -5,7 +5,6 @@ import { getFullDate, getTodayAndLastWeekReviewsCount } from '../utils/utils.js'
 
 export const renderDashboardFests = async (req, res) => {
     const fests = await Fest.find({});
-    console.log(fests);
     res.render('admin/dashboard_fests', { fests, boostrap: true });
 }
 

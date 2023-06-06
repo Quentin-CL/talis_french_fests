@@ -13,6 +13,4 @@ router
     .put('/:reviewId', isReviewLoggedIn, isReviewAuthor, validateReviewUpdate, reviews.updateReview)
     .delete('/:reviewId', isReviewLoggedIn, isReviewAuthor, reviews.deleteReview)
 
-// router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(reviews.deleteReview))
-
 export default router;
