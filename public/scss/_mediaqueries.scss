@@ -27,6 +27,22 @@
 }
 
 @include mq('tablet', max){
+    #contact-section{
+        .contact-container{
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+        }
+        .contact-form-container {
+            flex-basis: initial;
+        }
+    }
+    #modal-register, #modal-login, #modal-comments, #modal-locate{
+        .modal-content {
+          padding: 2rem 2rem;
+          width: 400px;
+        }
+    }
     #navbar-container{
         >div:first-of-type{
             max-width: 250px;
@@ -94,6 +110,15 @@
 }
 
 @include mq('phone-wide', max){
+    #modal-register, #modal-login, #modal-comments, #modal-locate{
+        .modal-content {
+          padding: 2rem 1rem;
+          width: 300px;
+        }
+    }
+    #modal-locate #map-locate{
+        height: 250px;
+    }
     #home-header{
         p{
             line-height: 25px ;

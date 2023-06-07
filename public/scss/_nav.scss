@@ -107,21 +107,7 @@
                 @extend %transition;
                 &.nav-link-open{
                     @extend %opacity;
-                    transition-delay: 0.55s;
-                }
-            }
-            &:nth-of-type(5){
-                @extend %transition;
-                &.nav-link-open{
-                    @extend %opacity;
-                    transition-delay: 0.65s;
-                }
-            }
-            &:nth-of-type(6){
-                @extend %transition;
-                &.nav-link-open{
-                    @extend %opacity;
-                    transition-delay: 0.75s;
+                    transition-delay: 0.45s;
                 }
             }
             a{
@@ -168,4 +154,10 @@
 }
 .btn-text{
     color: white;
+}
+
+.social-media{
+    @include flex; 
+    gap: 1.5rem;
+    i{color: white;}
 }

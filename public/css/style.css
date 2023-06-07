@@ -119,12 +119,12 @@ th {
   position: relative;
 }
 
-.nav-bar .nav-links li:nth-of-type(6), .nav-bar .nav-links li:nth-of-type(5), .nav-bar .nav-links li:nth-of-type(4), .nav-bar .nav-links li:nth-of-type(3), .nav-bar .nav-links li:nth-of-type(2), .nav-bar .nav-links li:nth-of-type(1) {
+.nav-bar .nav-links li:nth-of-type(4), .nav-bar .nav-links li:nth-of-type(3), .nav-bar .nav-links li:nth-of-type(2), .nav-bar .nav-links li:nth-of-type(1) {
   opacity: 0;
   transition: 0.3s ease-in all;
 }
 
-.nav-bar .nav-links li:nth-of-type(6).nav-link-open, .nav-bar .nav-links li:nth-of-type(5).nav-link-open, .nav-bar .nav-links li:nth-of-type(4).nav-link-open, .nav-bar .nav-links li:nth-of-type(3).nav-link-open, .nav-bar .nav-links li:nth-of-type(2).nav-link-open, .nav-bar .nav-links li:nth-of-type(1).nav-link-open {
+.nav-bar .nav-links li:nth-of-type(4).nav-link-open, .nav-bar .nav-links li:nth-of-type(3).nav-link-open, .nav-bar .nav-links li:nth-of-type(2).nav-link-open, .nav-bar .nav-links li:nth-of-type(1).nav-link-open {
   opacity: 1;
   transform: translateY(10px);
 }
@@ -207,13 +207,7 @@ th {
   transition-delay: 0.45s;
 }
 .nav-bar .nav-links li:nth-of-type(4).nav-link-open {
-  transition-delay: 0.55s;
-}
-.nav-bar .nav-links li:nth-of-type(5).nav-link-open {
-  transition-delay: 0.65s;
-}
-.nav-bar .nav-links li:nth-of-type(6).nav-link-open {
-  transition-delay: 0.75s;
+  transition-delay: 0.45s;
 }
 .nav-bar .nav-links li a {
   font-size: 50px;
@@ -256,6 +250,17 @@ th {
 }
 
 .btn-text {
+  color: white;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+.social-media i {
   color: white;
 }
 
@@ -1095,6 +1100,18 @@ footer {
   }
 }
 @media only screen and (max-width: 767px) {
+  #contact-section .contact-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+  }
+  #contact-section .contact-form-container {
+    flex-basis: initial;
+  }
+  #modal-register .modal-content, #modal-login .modal-content, #modal-comments .modal-content, #modal-locate .modal-content {
+    padding: 2rem 2rem;
+    width: 400px;
+  }
   #navbar-container > div:first-of-type {
     max-width: 250px;
     padding-top: 1rem;
@@ -1154,6 +1171,13 @@ footer {
   }
 }
 @media only screen and (max-width: 479px) {
+  #modal-register .modal-content, #modal-login .modal-content, #modal-comments .modal-content, #modal-locate .modal-content {
+    padding: 2rem 1rem;
+    width: 300px;
+  }
+  #modal-locate #map-locate {
+    height: 250px;
+  }
   #home-header p {
     line-height: 25px;
   }
